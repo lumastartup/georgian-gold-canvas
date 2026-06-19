@@ -66,7 +66,7 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
               </motion.div>
               <div className="absolute bottom-6 left-0 right-0 text-center">
                 <GeorgianOrnament className="mx-auto w-40 opacity-80" />
-                <p className="font-custom-wedding gold-text text-lg mt-1 whitespace-pre-wrap">{"\n"}</p>
+                <p className="font-custom-wedding gold-text text-lg mt-1 whitespace-pre-wrap">ჩვენი სიყვარულის დღე</p>
               </div>
             </div>
           </motion.button>
