@@ -77,7 +77,7 @@ export function Wishes() {
           border: "1px solid oklch(0.78 0.035 60 / 0.4)",
         }}
       >
-        გავგზავნოთ კონვერტი
+        გაგზავნა
       </motion.button>
     </form>
   );
