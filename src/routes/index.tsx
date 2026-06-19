@@ -6,6 +6,7 @@ import { GeorgianOrnament, GoldVine } from "@/components/wedding/Ornament";
 import { RSVP } from "@/components/wedding/RSVP";
 import { SeatingChart } from "@/components/wedding/SeatingChart";
 import { Timeline } from "@/components/wedding/Timeline";
+import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
 import champagne from "@/assets/champagne.png.asset.json";
 
@@ -246,6 +247,9 @@ function Index() {
 
       {/* SEATING */}
       <Section><SeatingChart /></Section>
+
+      {/* WISHES */}
+      <Section><Wishes /></Section>
 
       {/* FOOTER */}
       <footer className="text-center py-16 px-4">
