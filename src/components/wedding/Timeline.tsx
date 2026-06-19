@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import timelineIcons from "@/assets/timeline-icons.png.asset.json";
+import arch from "@/assets/ceremony-arch.png.asset.json";
 
 const STEPS = [
   { time: "14:00", title: "მზადება" },
@@ -13,69 +13,82 @@ const STEPS = [
   { time: "00:00", title: "გაცილება" },
 ];
 
-// 9 icons, evenly spaced across the strip
-const ICON_COUNT = 9;
-
 export function Timeline() {
   return (
-    <div className="canvas-card rounded-lg p-6 sm:p-10">
-      <p className="text-center whisper text-xs uppercase tracking-[0.35em] mb-2">our day</p>
-      <h3 className="font-custom-wedding gold-text text-3xl text-center mb-8">დღის განრიგი</h3>
+    <div className="canvas-card rounded-lg px-6 pt-12 pb-16 sm:px-12 sm:pt-16 sm:pb-20 relative overflow-hidden">
+      {/* Header */}
+      <div className="text-center relative z-10">
+        <p className="whisper text-[10px] uppercase tracking-[0.45em] mb-3">our day · ჩვენი დღე</p>
+        <h3 className="font-custom-wedding gold-text text-4xl sm:text-5xl mb-2">დღის განრიგი</h3>
+        <p className="whisper text-xs sm:text-sm mt-2 italic">წუთები, რომელთაც ერთად გავიზიარებთ</p>
+      </div>
 
-      {/* Watercolor icon strip */}
-      <div className="hidden sm:block relative mx-auto max-w-3xl mb-6">
-        <img
-          src={timelineIcons.url}
-          alt=""
-          className="w-full h-auto select-none pointer-events-none"
-          draggable={false}
+      {/* Ceremony arch — centered watercolor centerpiece */}
+      <motion.img
+        src={arch.url}
+        alt=""
+        aria-hidden
+        draggable={false}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        className="block mx-auto w-[78%] sm:w-[55%] max-w-md h-auto select-none pointer-events-none mt-6 mb-2 drop-shadow-[0_8px_20px_rgba(120,90,60,0.12)]"
+      />
+
+      {/* Vertical alternating timeline */}
+      <div className="relative max-w-2xl mx-auto mt-8">
+        {/* center painted line */}
+        <div
+          aria-hidden
+          className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px"
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent, oklch(0.78 0.060 22 / 0.55), oklch(0.80 0.035 145 / 0.55), oklch(0.78 0.060 22 / 0.55), transparent)",
+          }}
         />
-      </div>
 
-      {/* Mobile: per-step icon */}
-      <div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:hidden">
-        {STEPS.map((s, i) => {
-          const idx = Math.min(i, ICON_COUNT - 1);
-          return (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.06 }}
-              className="flex flex-col items-center text-center"
-            >
-              <div
-                className="w-14 h-14"
-                style={{
-                  backgroundImage: `url(${timelineIcons.url})`,
-                  backgroundSize: `${ICON_COUNT * 100}% 100%`,
-                  backgroundPosition: `${(idx / (ICON_COUNT - 1)) * 100}% center`,
-                  backgroundRepeat: "no-repeat",
-                }}
-              />
-              <div className="font-custom-wedding gold-text text-lg mt-1">{s.time}</div>
-              <div className="whisper text-[11px] mt-0.5">{s.title}</div>
-            </motion.div>
-          );
-        })}
-      </div>
+        <ul className="space-y-6 sm:space-y-8">
+          {STEPS.map((s, i) => {
+            const left = i % 2 === 0;
+            return (
+              <motion.li
+                key={s.time}
+                initial={{ opacity: 0, x: left ? -24 : 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.7, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                className="relative flex items-center"
+              >
+                {/* dot */}
+                <span
+                  aria-hidden
+                  className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 30% 30%, oklch(0.95 0.020 80), oklch(0.78 0.060 22))",
+                    boxShadow:
+                      "0 0 0 4px oklch(0.97 0.012 85 / 0.9), 0 2px 6px oklch(0.50 0.04 60 / 0.20)",
+                  }}
+                />
 
-      {/* Desktop list under the strip */}
-      <div className="hidden sm:grid grid-cols-9 gap-2 max-w-3xl mx-auto">
-        {STEPS.map((s, i) => (
-          <motion.div
-            key={s.title}
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="text-center"
-          >
-            <div className="font-custom-wedding gold-text text-base">{s.time}</div>
-            <div className="whisper text-[10px] uppercase tracking-wider mt-0.5">{s.title}</div>
-          </motion.div>
-        ))}
+                {/* card */}
+                <div
+                  className={`w-[calc(50%-1.25rem)] ${
+                    left ? "pr-6 text-right" : "ml-auto pl-6 text-left"
+                  }`}
+                >
+                  <div className="font-custom-wedding gold-text text-2xl sm:text-3xl leading-none">
+                    {s.time}
+                  </div>
+                  <div className="font-custom-wedding whisper text-sm sm:text-base mt-1 tracking-wide">
+                    {s.title}
+                  </div>
+                </div>
+              </motion.li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );
