@@ -17,34 +17,38 @@ export function RSVP() {
         animate={{ opacity: 1, scale: 1 }}
         className="canvas-card rounded-lg p-10 text-center"
       >
-        <h3 className="font-custom-wedding gold-text text-5xl">მადლობა!</h3>
-        <p className="mt-4 text-foreground/80">თქვენი პასუხი მიღებულია. ველოდებით თქვენთან შეხვედრას.</p>
+        <p className="whisper text-[10px] uppercase tracking-[0.4em]">thank you</p>
+        <h3 className="font-custom-wedding gold-text text-4xl mt-2">მადლობა</h3>
+        <p className="mt-4 whisper text-sm">პასუხი მიღებულია.</p>
       </motion.div>
     );
   }
 
   return (
     <form onSubmit={submit} className="canvas-card rounded-lg p-6 sm:p-10 space-y-6">
-      <h3 className="font-custom-wedding gold-text text-4xl text-center">დაგვიდასტურეთ</h3>
-
-      <div>
-        <label className="block text-sm tracking-wider uppercase text-muted-foreground mb-2">სახელი და გვარი</label>
-        <input required className="w-full px-4 py-3 rounded-md bg-transparent gold-border focus:outline-none focus:gold-glow" />
+      <div className="text-center">
+        <p className="whisper text-[10px] uppercase tracking-[0.4em]">rsvp</p>
+        <h3 className="font-custom-wedding gold-text text-3xl mt-2">დაგვიდასტურეთ</h3>
       </div>
 
       <div>
-        <label className="block text-sm tracking-wider uppercase text-muted-foreground mb-3">დასწრება</label>
+        <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">სახელი და გვარი</label>
+        <input required className="w-full px-4 py-3 rounded-md gold-border focus:outline-none focus:gold-glow" />
+      </div>
+
+      <div>
+        <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-3">დასწრება</label>
         <div className="grid grid-cols-2 gap-3">
           {[
             { v: "yes", label: "მოვდივარ" },
-            { v: "no", label: "სამწუხაროდ ვერ ვახერხებ" },
+            { v: "no", label: "ვერ ვახერხებ" },
           ].map((o) => (
             <button
               type="button"
               key={o.v}
               onClick={() => setAttending(o.v as "yes" | "no")}
-              className={`px-3 py-3 rounded-md transition-all font-custom-wedding text-lg ${
-                attending === o.v ? "gold-fill gold-glow" : "gold-border text-foreground/80"
+              className={`px-3 py-3 rounded-md transition-all font-custom-wedding text-base ${
+                attending === o.v ? "gold-fill gold-glow" : "gold-border whisper"
               }`}
             >
               {o.label}
@@ -56,31 +60,35 @@ export function RSVP() {
       {attending === "yes" && (
         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="space-y-6 overflow-hidden">
           <div>
-            <label className="block text-sm tracking-wider uppercase text-muted-foreground mb-2">სტუმრების რაოდენობა</label>
-            <select className="w-full px-4 py-3 rounded-md bg-transparent gold-border focus:outline-none focus:gold-glow">
+            <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">სტუმრები</label>
+            <select className="w-full px-4 py-3 rounded-md gold-border focus:outline-none focus:gold-glow">
               <option className="bg-card">მხოლოდ მე</option>
               <option className="bg-card">+1 თანმხლები</option>
               <option className="bg-card">ოჯახით</option>
             </select>
           </div>
           <div>
-            <label className="block text-sm tracking-wider uppercase text-muted-foreground mb-2">კვების უპირატესობა</label>
-            <select className="w-full px-4 py-3 rounded-md bg-transparent gold-border focus:outline-none focus:gold-glow">
-              <option className="bg-card">სტანდარტული მენიუ</option>
-              <option className="bg-card">სამარხვო მენიუ</option>
+            <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">მენიუ</label>
+            <select className="w-full px-4 py-3 rounded-md gold-border focus:outline-none focus:gold-glow">
+              <option className="bg-card">სტანდარტული</option>
+              <option className="bg-card">სამარხვო</option>
               <option className="bg-card">ვეგეტარიანული</option>
-              <option className="bg-card">ალერგია / განსაკუთრებული</option>
+              <option className="bg-card">განსაკუთრებული</option>
             </select>
           </div>
         </motion.div>
       )}
 
       <motion.button
-        whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-        className="w-full py-4 rounded-md gold-fill gold-glow font-custom-wedding text-2xl animate-shimmer"
-        style={{ background: "var(--gradient-gold)" }}
+        whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}
+        className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow"
+        style={{
+          background: "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
+          color: "oklch(0.42 0.030 75)",
+          border: "1px solid oklch(0.78 0.035 60 / 0.4)",
+        }}
       >
-        გავგზავნოთ პასუხი
+        გავგზავნოთ
       </motion.button>
     </form>
   );

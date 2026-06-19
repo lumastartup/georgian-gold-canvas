@@ -24,22 +24,23 @@ export function SeatingChart() {
 
   return (
     <div className="canvas-card rounded-lg p-6 sm:p-8">
-      <h3 className="font-custom-wedding gold-text text-4xl text-center">მაგიდის განლაგება</h3>
-      <p className="text-center text-sm text-muted-foreground mt-2 mb-6">
-        ჩაწერეთ თქვენი სახელი — გაგინათდებათ თქვენი მაგიდა
+      <p className="text-center whisper text-[10px] uppercase tracking-[0.4em]">seating</p>
+      <h3 className="font-custom-wedding gold-text text-3xl text-center mt-2">მაგიდის განლაგება</h3>
+      <p className="text-center whisper text-xs mt-2 mb-6">
+        ჩაწერეთ სახელი — გაგინათდებათ მაგიდა
       </p>
 
       <div className="max-w-md mx-auto mb-8">
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="თქვენი სახელი და გვარი..."
-          className="w-full px-5 py-3 rounded-md bg-transparent gold-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:gold-glow"
+          placeholder="თქვენი სახელი..."
+          className="w-full px-5 py-3 rounded-md gold-border text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:gold-glow"
         />
       </div>
 
       {match?.table === null && (
-        <p className="text-center text-sm text-muted-foreground">სტუმარი ვერ მოიძებნა — გთხოვთ შეამოწმოთ მართლწერა.</p>
+        <p className="text-center text-xs whisper">სტუმარი ვერ მოიძებნა.</p>
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
@@ -52,16 +53,16 @@ export function SeatingChart() {
               className="relative rounded-full aspect-square flex flex-col items-center justify-center text-center p-3 transition-all"
               style={{
                 background: lit
-                  ? "radial-gradient(circle, oklch(0.45 0.10 88 / 0.8), oklch(0.28 0.07 160))"
-                  : "radial-gradient(circle, oklch(0.32 0.08 158), oklch(0.22 0.06 162))",
-                border: "1px solid oklch(0.55 0.10 84 / 0.5)",
+                  ? "radial-gradient(circle, oklch(0.88 0.040 25 / 0.7), oklch(0.94 0.018 82))"
+                  : "radial-gradient(circle, oklch(0.96 0.014 84), oklch(0.90 0.028 80 / 0.6))",
+                border: "1px solid oklch(0.78 0.035 60 / 0.4)",
                 boxShadow: lit
-                  ? "0 0 40px oklch(0.85 0.13 88 / 0.7), inset 0 0 30px oklch(0.85 0.13 88 / 0.3)"
-                  : "inset 0 0 20px oklch(0.10 0.04 160 / 0.6)",
+                  ? "0 6px 24px oklch(0.78 0.060 22 / 0.35)"
+                  : "inset 0 0 12px oklch(0.50 0.04 60 / 0.08)",
               }}
             >
               <span className="font-custom-wedding gold-text text-3xl">{t.id}</span>
-              <span className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">მაგიდა</span>
+              <span className="text-[9px] uppercase tracking-[0.3em] whisper mt-1">მაგიდა</span>
               {lit && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -71,7 +72,7 @@ export function SeatingChart() {
                   <div className="gold-text font-custom-wedding text-base mb-1">თქვენი მაგიდა</div>
                   <ul className="space-y-1">
                     {t.guests.map((g) => (
-                      <li key={g} className={g === match?.guest ? "text-accent font-semibold" : "text-foreground/80"}>
+                      <li key={g} className={g === match?.guest ? "text-accent font-semibold" : "whisper"}>
                         {g}
                       </li>
                     ))}
