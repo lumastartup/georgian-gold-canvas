@@ -34,81 +34,64 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-gold: var(--gold);
-  --color-gold-bright: var(--gold-bright);
-  --color-gold-deep: var(--gold-deep);
-  --color-emerald-deep: var(--emerald-deep);
-  --color-emerald-mid: var(--emerald-mid);
+  --color-sage: var(--sage);
+  --color-blush: var(--blush);
   --color-champagne: var(--champagne);
+  --color-cream: var(--cream);
   --font-custom-wedding: "Galaktioni", serif;
 }
 
 :root {
   --radius: 0.5rem;
 
-  /* Oil-painting emerald canvas */
-  --emerald-deep: oklch(0.22 0.06 160);
-  --emerald-mid: oklch(0.32 0.08 158);
-  --emerald-soft: oklch(0.42 0.07 160);
+  /* Soft pastel watercolor palette */
+  --cream: oklch(0.97 0.012 85);
+  --cream-deep: oklch(0.94 0.018 82);
+  --champagne: oklch(0.90 0.028 80);
+  --blush: oklch(0.88 0.040 25);
+  --blush-deep: oklch(0.78 0.060 22);
+  --sage: oklch(0.80 0.035 145);
+  --sage-deep: oklch(0.62 0.050 148);
+  --ink: oklch(0.42 0.030 75);
+  --ink-soft: oklch(0.58 0.025 78);
 
-  /* Liquid gold */
-  --gold-deep: oklch(0.55 0.12 80);
-  --gold: oklch(0.78 0.14 84);
-  --gold-bright: oklch(0.90 0.13 92);
-  --champagne: oklch(0.92 0.05 88);
-
-  --background: var(--emerald-deep);
-  --foreground: oklch(0.95 0.04 88);
-  --card: oklch(0.26 0.06 160);
-  --card-foreground: oklch(0.95 0.04 88);
-  --popover: oklch(0.26 0.06 160);
-  --popover-foreground: oklch(0.95 0.04 88);
-  --primary: var(--gold);
-  --primary-foreground: var(--emerald-deep);
-  --secondary: oklch(0.30 0.06 160);
-  --secondary-foreground: var(--champagne);
-  --muted: oklch(0.30 0.05 160);
-  --muted-foreground: oklch(0.78 0.04 90);
-  --accent: var(--gold-bright);
-  --accent-foreground: var(--emerald-deep);
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(0.96 0.014 84);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+  --primary: var(--sage-deep);
+  --primary-foreground: var(--cream);
+  --secondary: var(--champagne);
+  --secondary-foreground: var(--ink);
+  --muted: var(--cream-deep);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--blush-deep);
+  --accent-foreground: var(--cream);
   --destructive: oklch(0.55 0.20 27);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.55 0.10 84 / 35%);
-  --input: oklch(0.40 0.05 160);
-  --ring: var(--gold);
+  --border: oklch(0.78 0.035 60 / 35%);
+  --input: oklch(0.85 0.025 70);
+  --ring: var(--blush-deep);
 
-  --gradient-gold: linear-gradient(135deg,
-      oklch(0.62 0.13 75) 0%,
-      oklch(0.88 0.14 88) 30%,
-      oklch(0.72 0.13 80) 55%,
-      oklch(0.95 0.10 92) 75%,
-      oklch(0.55 0.12 70) 100%);
-  --gradient-gold-soft: linear-gradient(135deg,
-      oklch(0.70 0.12 80), oklch(0.88 0.13 88), oklch(0.65 0.11 78));
-  --gradient-emerald: radial-gradient(ellipse at 30% 20%,
-      oklch(0.38 0.09 158) 0%,
-      oklch(0.24 0.07 160) 45%,
-      oklch(0.16 0.05 162) 100%);
-
-  --shadow-gold: 0 4px 20px -4px oklch(0.55 0.12 80 / 0.55),
-                 0 0 1px 0 oklch(0.90 0.13 92 / 0.8) inset;
-  --shadow-canvas: 0 30px 80px -20px oklch(0.10 0.04 160 / 0.7),
-                   0 0 0 1px oklch(0.55 0.10 84 / 0.4),
-                   inset 0 0 100px oklch(0.10 0.04 160 / 0.6);
+  --gradient-soft: linear-gradient(135deg, var(--champagne), var(--cream), var(--blush));
+  --shadow-soft: 0 12px 40px -18px oklch(0.50 0.04 60 / 0.25),
+                 0 1px 0 oklch(1 0 0 / 0.8) inset;
 }
 
-.dark { color-scheme: dark; }
+.dark { color-scheme: light; }
 
 @layer base {
   * { border-color: var(--color-border); }
-  html, body { background: var(--emerald-deep); }
+  html, body { background: var(--cream); }
   body {
     color: var(--color-foreground);
     font-family: ui-serif, Georgia, "Times New Roman", serif;
     background-image:
-      radial-gradient(ellipse at 20% 10%, oklch(0.42 0.08 158 / 0.55), transparent 55%),
-      radial-gradient(ellipse at 80% 80%, oklch(0.18 0.05 162 / 0.85), transparent 55%),
-      linear-gradient(180deg, oklch(0.24 0.07 160), oklch(0.16 0.05 162));
+      radial-gradient(ellipse at 15% 10%, oklch(0.92 0.030 25 / 0.35), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, oklch(0.88 0.025 145 / 0.30), transparent 55%),
+      radial-gradient(ellipse at 50% 50%, oklch(0.97 0.012 85), oklch(0.94 0.018 82));
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -117,88 +100,77 @@
 @layer utilities {
   .font-custom-wedding {
     font-family: "Galaktioni", serif;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
   }
 
-  /* Painted oil canvas texture */
+  /* Watercolor canvas backdrop */
   .oil-canvas {
     position: relative;
     background:
-      radial-gradient(ellipse at 25% 15%, oklch(0.38 0.09 158 / 0.7), transparent 60%),
-      radial-gradient(ellipse at 85% 90%, oklch(0.16 0.05 162 / 0.9), transparent 55%),
-      linear-gradient(160deg, oklch(0.30 0.08 160), oklch(0.20 0.06 162));
+      radial-gradient(ellipse at 20% 15%, oklch(0.92 0.030 25 / 0.4), transparent 60%),
+      radial-gradient(ellipse at 80% 85%, oklch(0.88 0.025 145 / 0.35), transparent 55%),
+      linear-gradient(160deg, var(--cream), var(--cream-deep));
   }
   .oil-canvas::before {
     content: "";
     position: absolute; inset: 0;
     pointer-events: none;
     background-image:
-      repeating-linear-gradient(43deg, oklch(1 0 0 / 0.025) 0 2px, transparent 2px 5px),
-      repeating-linear-gradient(127deg, oklch(0 0 0 / 0.04) 0 1px, transparent 1px 4px);
-    mix-blend-mode: overlay;
-    opacity: 0.8;
+      repeating-linear-gradient(43deg, oklch(0 0 0 / 0.012) 0 2px, transparent 2px 6px);
+    mix-blend-mode: multiply;
   }
 
-  /* Liquid gold text */
+  /* Whisper text — background-tinted, ultra subtle */
+  .whisper {
+    color: oklch(0.62 0.025 78);
+    letter-spacing: 0.04em;
+  }
+  .whisper-soft {
+    color: oklch(0.72 0.020 75);
+  }
+
+  /* Subtle painted title — uses muted ink tone */
   .gold-text {
-    background: var(--gradient-gold);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(0 1px 0 oklch(0.30 0.08 70 / 0.6))
-            drop-shadow(0 0 14px oklch(0.85 0.13 88 / 0.25));
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
   }
 
   .gold-fill {
-    background: var(--gradient-gold);
-    color: var(--emerald-deep);
+    background: var(--sage);
+    color: var(--ink);
   }
 
   .gold-border {
-    border: 1px solid transparent;
-    background:
-      linear-gradient(var(--card), var(--card)) padding-box,
-      var(--gradient-gold) border-box;
+    border: 1px solid oklch(0.78 0.035 60 / 0.45);
+    background: oklch(1 0 0 / 0.4);
   }
 
   .gold-glow {
-    box-shadow: var(--shadow-gold);
+    box-shadow: var(--shadow-soft);
   }
 
   .canvas-card {
     background:
-      radial-gradient(ellipse at 30% 20%, oklch(0.32 0.07 158 / 0.9), transparent 60%),
-      linear-gradient(160deg, oklch(0.28 0.07 160), oklch(0.20 0.06 162));
-    box-shadow: var(--shadow-canvas);
-    border: 1px solid oklch(0.55 0.10 84 / 0.4);
+      linear-gradient(160deg, oklch(1 0 0 / 0.6), oklch(0.96 0.014 84 / 0.85));
+    backdrop-filter: blur(2px);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid oklch(0.78 0.035 60 / 0.30);
     position: relative;
-  }
-  .canvas-card::after {
-    content: "";
-    position: absolute; inset: 0;
-    pointer-events: none;
-    background-image:
-      repeating-linear-gradient(43deg, oklch(1 0 0 / 0.02) 0 2px, transparent 2px 5px);
-    mix-blend-mode: overlay;
-    border-radius: inherit;
   }
 
   .brush-divider {
-    height: 14px;
-    background: var(--gradient-gold);
-    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 14' preserveAspectRatio='none'><path d='M2 7 Q60 1 130 7 T260 8 T398 6' stroke='black' stroke-width='3' fill='none' stroke-linecap='round'/><circle cx='8' cy='7' r='2.5' fill='black'/><circle cx='395' cy='7' r='2.5' fill='black'/></svg>");
-    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 14' preserveAspectRatio='none'><path d='M2 7 Q60 1 130 7 T260 8 T398 6' stroke='black' stroke-width='3' fill='none' stroke-linecap='round'/><circle cx='8' cy='7' r='2.5' fill='black'/><circle cx='395' cy='7' r='2.5' fill='black'/></svg>");
+    height: 10px;
+    background: linear-gradient(90deg, transparent, oklch(0.78 0.060 22 / 0.6), transparent);
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 10' preserveAspectRatio='none'><path d='M4 5 Q100 2 200 5 T396 5' stroke='black' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 10' preserveAspectRatio='none'><path d='M4 5 Q100 2 200 5 T396 5' stroke='black' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
-    filter: drop-shadow(0 0 6px oklch(0.85 0.13 88 / 0.45));
+    opacity: 0.7;
   }
 }
 
 @keyframes shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 1; }
 }
-.animate-shimmer {
-  background-size: 200% 200%;
-  animation: shimmer 6s ease-in-out infinite;
-}
+.animate-shimmer { animation: shimmer 6s ease-in-out infinite; }
