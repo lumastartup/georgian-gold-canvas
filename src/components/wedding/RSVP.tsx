@@ -27,8 +27,8 @@ export function RSVP() {
   return (
     <form onSubmit={submit} className="canvas-card rounded-lg p-6 sm:p-10 space-y-6">
       <div className="text-center">
-        <p className="whisper text-[10px] uppercase tracking-[0.4em]">rsvp</p>
-        <h3 className="font-custom-wedding gold-text text-3xl mt-2">დაგვიდასტურეთ</h3>
+        <p className="whisper text-[10px] uppercase tracking-[0.4em]">{"\n"}</p>
+        <h3 className="font-custom-wedding gold-text text-3xl mt-2">დაგვიდასტურეთ თქვენი მობრძანება</h3>
       </div>
 
       <div>
@@ -41,7 +41,7 @@ export function RSVP() {
         <div className="grid grid-cols-2 gap-3">
           {[
             { v: "yes", label: "მოვდივარ" },
-            { v: "no", label: "ვერ ვახერხებ" },
+            { v: "no", label: "სამწუხაროდ ვერ ვახერხებ" },
           ].map((o) => (
             <button
               type="button"
