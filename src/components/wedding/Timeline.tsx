@@ -10,7 +10,7 @@ const STEPS = [
   { time: "20:00", title: "ტორტი" },
   { time: "21:00", title: "პირველი ცეკვა" },
   { time: "22:00", title: "მუსიკა" },
-  { time: "00:00", title: "გაცილება" },
+  { time: "00:00", title: "Night Party" },
 ];
 
 export function Timeline() {
