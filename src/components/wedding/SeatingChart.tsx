@@ -27,7 +27,7 @@ export function SeatingChart() {
       <p className="text-center whisper text-[10px] uppercase tracking-[0.4em]">seating</p>
       <h3 className="font-custom-wedding gold-text text-3xl text-center mt-2">მაგიდის განლაგება</h3>
       <p className="text-center whisper text-xs mt-2 mb-6">
-        ჩაწერეთ სახელი — გაგინათდებათ მაგიდა
+        ჩაწერეთ სახელი&nbsp;
       </p>
 
       <div className="max-w-md mx-auto mb-8">

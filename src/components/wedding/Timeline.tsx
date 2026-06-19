@@ -4,7 +4,7 @@ import arch from "@/assets/ceremony-arch.png.asset.json";
 const STEPS = [
   { time: "14:00", title: "მზადება" },
   { time: "15:30", title: "ჯვრისწერა" },
-  { time: "17:00", title: "მისაღები" },
+  { time: "17:00", title: "Welcome Drinks" },
   { time: "18:00", title: "ვახშამი" },
   { time: "19:00", title: "ფოტოსესია" },
   { time: "20:00", title: "ტორტი" },

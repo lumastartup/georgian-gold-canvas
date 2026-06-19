@@ -158,7 +158,7 @@ function Index() {
           <GeorgianOrnament className="mx-auto w-36 mb-6" />
           <p className="whisper text-[10px] uppercase tracking-[0.4em] mb-4">გეპატიჟებით</p>
           <p className="font-custom-wedding gold-text text-lg sm:text-xl leading-relaxed">
-            სიყვარულით, ტრადიციითა და ახალი დასაწყისით სავსე დღე
+            სიყვარულით, ბედნიერებით და ახალი დასაწყისით სავსე დღე
           </p>
           <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
             ჩვენი ცხოვრების უმნიშვნელოვანეს მომენტს თქვენთან ერთად აღვნიშნავთ.
