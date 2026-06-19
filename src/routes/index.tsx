@@ -203,7 +203,7 @@ function Index() {
 
           <motion.a
             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-            href="https://maps.google.com/?q=Ambassadori+Kachreti+Resort"
+            href="https://www.google.com/maps/search/?api=1&query=Ambassadori+Kachreti+Resort+%26+Spa"
             target="_blank" rel="noreferrer"
             className="inline-block mt-6 px-7 py-3 rounded-md font-custom-wedding text-base tracking-widest"
             style={{
