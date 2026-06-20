@@ -9,6 +9,7 @@ import { Timeline } from "@/components/wedding/Timeline";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
 import champagne from "@/assets/champagne.png.asset.json";
+import kachretiHotel from "@/assets/kachreti-hotel.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -178,28 +179,13 @@ function Index() {
           <h3 className="font-custom-wedding gold-text text-3xl mt-2">Ambassadori Kachreti</h3>
           <p className="mt-2 whisper text-sm">კახეთი, საქართველო</p>
 
-          <div
-            className="mt-6 rounded-md overflow-hidden gold-border aspect-[16/9] relative"
-            style={{
-              background:
-                "radial-gradient(ellipse at 30% 30%, oklch(0.88 0.025 145 / 0.6), oklch(0.94 0.018 82))",
-            }}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2.4, repeat: Infinity }}
-                className="w-12 h-12 rounded-full flex items-center justify-center"
-                style={{
-                  background: "linear-gradient(160deg, oklch(0.88 0.040 25), oklch(0.80 0.035 145))",
-                  boxShadow: "0 4px 14px oklch(0.50 0.04 60 / 0.3)",
-                }}
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="oklch(0.42 0.030 75)">
-                  <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
-                </svg>
-              </motion.div>
-            </div>
+          <div className="mt-6 rounded-md overflow-hidden gold-border aspect-[16/9] relative">
+            <img
+              src={kachretiHotel.url}
+              alt="Ambassadori Kachreti"
+              className="w-full h-full object-cover"
+              draggable={false}
+            />
           </div>
 
           <motion.a
