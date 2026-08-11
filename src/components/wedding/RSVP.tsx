@@ -26,11 +26,18 @@ export function RSVP() {
   }
 
   return (
-    <form onSubmit={submit} className="canvas-card rounded-lg p-6 sm:p-10 space-y-6">
-      <div className="text-center">
-        <p className="whisper text-[10px] uppercase tracking-[0.4em]">{"\n"}</p>
-        <h3 className="font-custom-wedding gold-text text-3xl mt-2">დაგვიდასტურეთ თქვენი მობრძანება</h3>
-      </div>
+    <div
+      className="relative w-full mx-auto max-w-xl bg-no-repeat bg-center bg-contain"
+      style={{ backgroundImage: `url(${floralFrame.url})` }}
+    >
+      <form
+        onSubmit={submit}
+        className="relative space-y-5 px-[12%] pt-[16%] pb-[30%] sm:px-[14%] sm:pt-[15%] sm:pb-[28%]"
+      >
+        <div className="text-center">
+          <h3 className="font-custom-wedding gold-text text-2xl sm:text-3xl">დაგვიდასტურეთ თქვენი მობრძანება</h3>
+        </div>
+
 
       <div>
         <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">სახელი და გვარი</label>
