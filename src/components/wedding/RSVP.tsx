@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import floralFrame from "@/assets/floral-frame.png.asset.json";
 
 export function RSVP() {
   const [submitted, setSubmitted] = useState(false);
