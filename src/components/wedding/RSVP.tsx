@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import floralFrame from "@/assets/floral-frame.png.asset.json";
 
 export function RSVP() {
   const [submitted, setSubmitted] = useState(false);
@@ -25,11 +26,18 @@ export function RSVP() {
   }
 
   return (
-    <form onSubmit={submit} className="canvas-card rounded-lg p-6 sm:p-10 space-y-6">
-      <div className="text-center">
-        <p className="whisper text-[10px] uppercase tracking-[0.4em]">{"\n"}</p>
-        <h3 className="font-custom-wedding gold-text text-3xl mt-2">დაგვიდასტურეთ თქვენი მობრძანება</h3>
-      </div>
+    <div
+      className="relative w-full mx-auto max-w-xl bg-no-repeat bg-center"
+      style={{ backgroundImage: `url(${floralFrame.url})`, backgroundSize: "100% 100%" }}
+    >
+      <form
+        onSubmit={submit}
+        className="relative space-y-5 px-[13%] pt-[16%] pb-[38%] sm:px-[15%] sm:pt-[15%] sm:pb-[34%]"
+      >
+        <div className="text-center">
+          <h3 className="font-custom-wedding gold-text text-2xl sm:text-3xl">დაგვიდასტურეთ თქვენი მობრძანება</h3>
+        </div>
+
 
       <div>
         <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">სახელი და გვარი</label>
@@ -88,8 +96,9 @@ export function RSVP() {
           border: "1px solid oklch(0.78 0.035 60 / 0.4)",
         }}
       >
-        გავგზავნოთ
-      </motion.button>
-    </form>
+          გაგზავნა
+        </motion.button>
+      </form>
+    </div>
   );
 }
