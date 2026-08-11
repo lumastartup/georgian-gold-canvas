@@ -96,8 +96,9 @@ export function RSVP() {
           border: "1px solid oklch(0.78 0.035 60 / 0.4)",
         }}
       >
-        გავგზავნოთ
-      </motion.button>
-    </form>
+          გაგზავნა
+        </motion.button>
+      </form>
+    </div>
   );
 }
