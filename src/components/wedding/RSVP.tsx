@@ -27,12 +27,12 @@ export function RSVP() {
 
   return (
     <div
-      className="relative w-full mx-auto max-w-xl bg-no-repeat bg-center bg-contain"
-      style={{ backgroundImage: `url(${floralFrame.url})` }}
+      className="relative w-full mx-auto max-w-xl bg-no-repeat bg-center"
+      style={{ backgroundImage: `url(${floralFrame.url})`, backgroundSize: "100% 100%" }}
     >
       <form
         onSubmit={submit}
-        className="relative space-y-5 px-[13%] pt-[18%] pb-[42%] sm:px-[15%] sm:pt-[17%] sm:pb-[40%]"
+        className="relative space-y-5 px-[13%] pt-[16%] pb-[38%] sm:px-[15%] sm:pt-[15%] sm:pb-[34%]"
       >
         <div className="text-center">
           <h3 className="font-custom-wedding gold-text text-2xl sm:text-3xl">დაგვიდასტურეთ თქვენი მობრძანება</h3>
