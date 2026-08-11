@@ -39,9 +39,19 @@ export function Wishes() {
   return (
     <form onSubmit={submit} className="canvas-card rounded-lg p-6 sm:p-10 space-y-6">
       <div className="text-center">
-        <GeorgianOrnament className="mx-auto w-32 mb-3" />
+        <motion.img
+          src={waxEnvelope.url}
+          alt="სურვილების კონვერტი ცვილის ბეჭდით"
+          initial={{ opacity: 0, y: 12, rotate: -2 }}
+          whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mx-auto w-40 sm:w-52 mb-4 drop-shadow-[0_10px_24px_rgba(0,0,0,0.10)]"
+          loading="lazy"
+        />
         <p className="whisper text-[10px] uppercase tracking-[0.4em]">wishes</p>
         <h3 className="font-custom-wedding gold-text text-3xl mt-2">სურვილების კონვერტი</h3>
+
         <p className="mt-4 whisper text-sm leading-loose max-w-md mx-auto">
           ჩვენთვის თქვენი ყოველი ძვირფასი სიტყვა, დალოცვა და კეთილი სურვილები მნიშვნელოვანია.
           სურვილისამებრ გაგვიზიარეთ თქვენი განწყობა.
