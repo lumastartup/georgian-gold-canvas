@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
+import waxEnvelope from "@/assets/wax-envelope.png.asset.json";
 
 export function Wishes() {
   const [submitted, setSubmitted] = useState(false);
