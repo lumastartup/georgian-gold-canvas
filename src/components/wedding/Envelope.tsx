@@ -77,7 +77,7 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
                     boxShadow: "0 4px 14px oklch(0.50 0.04 60 / 0.25)",
                   }}
                 >
-                  ს · ნ
+                  ნ · დ
                 </div>
               </motion.div>
               <div className="absolute bottom-5 left-0 right-0 text-center">

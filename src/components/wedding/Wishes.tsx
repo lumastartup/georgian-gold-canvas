@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
-import waxEnvelope from "@/assets/wax-envelope.png.asset.json";
+import waxEnvelope from "@/assets/pink-envelope.jpg.asset.json";
 
 export function Wishes() {
   const [submitted, setSubmitted] = useState(false);
@@ -46,7 +46,7 @@ export function Wishes() {
           whileInView={{ opacity: 1, y: 0, rotate: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="mx-auto w-40 sm:w-52 mb-4 drop-shadow-[0_10px_24px_rgba(0,0,0,0.10)]"
+          className="mx-auto w-56 sm:w-72 mb-4 rounded-md drop-shadow-[0_10px_24px_rgba(0,0,0,0.10)]"
           loading="lazy"
         />
         <p className="whisper text-[10px] uppercase tracking-[0.4em]">wishes</p>
