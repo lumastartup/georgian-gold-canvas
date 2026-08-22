@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import floralFrame from "@/assets/floral-frame.png.asset.json";
+
 
 export function RSVP() {
   const [submitted, setSubmitted] = useState(false);
@@ -26,13 +26,10 @@ export function RSVP() {
   }
 
   return (
-    <div
-      className="relative w-full mx-auto max-w-xl bg-no-repeat bg-center"
-      style={{ backgroundImage: `url(${floralFrame.url})`, backgroundSize: "100% 100%" }}
-    >
+    <div className="relative w-full mx-auto max-w-xl canvas-card rounded-lg">
       <form
         onSubmit={submit}
-        className="relative space-y-5 px-[13%] pt-[16%] pb-[38%] sm:px-[15%] sm:pt-[15%] sm:pb-[34%]"
+        className="relative space-y-5 p-6 sm:p-10"
       >
         <div className="text-center">
           <h3 className="font-custom-wedding gold-text text-2xl sm:text-3xl">დაგვიდასტურეთ თქვენი მობრძანება</h3>

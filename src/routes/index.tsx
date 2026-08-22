@@ -4,20 +4,21 @@ import { Envelope } from "@/components/wedding/Envelope";
 import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { GeorgianOrnament, GoldVine } from "@/components/wedding/Ornament";
 import { RSVP } from "@/components/wedding/RSVP";
-import { SeatingChart } from "@/components/wedding/SeatingChart";
 import { Timeline } from "@/components/wedding/Timeline";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
 import champagne from "@/assets/champagne.png.asset.json";
-import kachretiHotel from "@/assets/kachreti-hotel.png.asset.json";
+import giuaani from "@/assets/giuaani.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "სალი & ნიკო — 26.08.2026" },
-      { name: "description", content: "სალისა და ნიკოს ქორწილის მოსაწვევი — Ambassadori Kachreti, 26 აგვისტო, 2026" },
-      { property: "og:title", content: "სალი & ნიკო — საქორწინო მოსაწვევი" },
-      { property: "og:description", content: "Ambassadori Kachreti · 26.08.2026" },
+      { title: "ნინი & დათა — 20.09.2026" },
+      { name: "description", content: "ნინისა და დათას ქორწილის მოსაწვევი — გიუაანი მეღვინეობა, 20 სექტემბერი, 2026" },
+      { property: "og:title", content: "ნინი & დათა — საქორწინო მოსაწვევი" },
+      { property: "og:description", content: "გიუაანი მეღვინეობა · 20.09.2026" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -73,7 +74,7 @@ function Section({ children, delay = 0 }: { children: React.ReactNode; delay?: n
 function Index() {
   const [opened, setOpened] = useState(false);
   const [step, setStep] = useState(0);
-  const cd = useCountdown(new Date("2026-08-26T17:00:00+04:00"));
+  const cd = useCountdown(new Date("2026-09-20T14:30:00+04:00"));
 
   useEffect(() => {
     if (!opened) return;
@@ -123,9 +124,9 @@ function Index() {
                 transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
                 className="font-custom-wedding gold-text text-6xl sm:text-8xl leading-[1.0] my-2"
               >
-                სალი
+                ნინი
                 <span className="block whisper-soft text-3xl sm:text-5xl my-3 italic">&amp;</span>
-                ნიკო
+                დათა
               </motion.h1>
             )}
           </AnimatePresence>
@@ -138,7 +139,7 @@ function Index() {
                 className="mt-10"
               >
                 <GeorgianOrnament className="mx-auto w-44" />
-                <p className="font-custom-wedding whisper text-xl sm:text-2xl mt-3 tracking-[0.3em]">26 · 08 · 2026</p>
+                <p className="font-custom-wedding whisper text-xl sm:text-2xl mt-3 tracking-[0.3em]">20 · 09 · 2026</p>
 
                 <div className="flex justify-center gap-2 sm:gap-3 mt-8">
                   <CountdownPiece value={cd.d} label="დღე" />
@@ -176,13 +177,13 @@ function Index() {
       <Section>
         <div className="canvas-card rounded-lg p-6 sm:p-10 text-center">
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">venue</p>
-          <h3 className="font-custom-wedding gold-text text-3xl mt-2">Ambassadori Kachreti</h3>
-          <p className="mt-2 whisper text-sm">კახეთი, საქართველო</p>
+          <h3 className="font-custom-wedding gold-text text-3xl mt-2">გიუაანი მეღვინეობა</h3>
+          <p className="mt-2 whisper text-sm">ხელის მოწერა და ვახშამი · კახეთი</p>
 
           <div className="mt-6 rounded-md overflow-hidden gold-border aspect-[16/9] relative">
             <img
-              src={kachretiHotel.url}
-              alt="Ambassadori Kachreti"
+              src={giuaani.url}
+              alt="გიუაანი მეღვინეობა — ვახშამის ადგილი"
               className="w-full h-full object-cover"
               draggable={false}
             />
@@ -190,7 +191,7 @@ function Index() {
 
           <motion.a
             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-            href="https://www.google.com/maps/search/?api=1&query=Ambassadori+Kachreti+Resort+%26+Spa"
+            href="https://maps.app.goo.gl/wnw1PHBeNMSh5uaU7?g_st=ic"
             target="_blank" rel="noreferrer"
             className="inline-block mt-6 px-7 py-3 rounded-md font-custom-wedding text-base tracking-widest"
             style={{
@@ -231,8 +232,6 @@ function Index() {
       {/* RSVP */}
       <Section><RSVP /></Section>
 
-      {/* SEATING */}
-      <Section><SeatingChart /></Section>
 
       {/* WISHES */}
       <Section><Wishes /></Section>
@@ -240,8 +239,8 @@ function Index() {
       {/* FOOTER */}
       <footer className="text-center py-16 px-4">
         <GeorgianOrnament className="mx-auto w-44 opacity-70" />
-        <p className="font-custom-wedding gold-text text-2xl mt-4">სალი &amp; ნიკო</p>
-        <p className="text-[10px] whisper mt-2 tracking-[0.4em]">26 · 08 · 2026 · KACHRETI</p>
+        <p className="font-custom-wedding gold-text text-2xl mt-4">ნინი &amp; დათა</p>
+        <p className="text-[10px] whisper mt-2 tracking-[0.4em]">20 · 09 · 2026 · გიუაანი</p>
       </footer>
     </div>
   );
