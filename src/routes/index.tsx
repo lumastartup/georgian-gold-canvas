@@ -159,12 +159,22 @@ function Index() {
       <Section>
         <div className="canvas-card rounded-lg p-8 sm:p-12 text-center">
           <GeorgianOrnament className="mx-auto w-36 mb-6" />
-          <p className="whisper text-[10px] uppercase tracking-[0.4em] mb-4">გეპატიჟებით</p>
-          <p className="font-custom-wedding gold-text text-lg sm:text-xl leading-relaxed">
-            სიყვარულით, ბედნიერებით და ახალი დასაწყისით სავსე დღე
+          <p className="whisper text-[10px] uppercase tracking-[0.4em] mb-4 min-h-[1.25rem]">
+            <TypewriterText text="გეპატიჟებით" startDelay={300} speed={55} />
           </p>
-          <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
-            ჩვენი ცხოვრების უმნიშვნელოვანეს მომენტს თქვენთან ერთად აღვნიშნავთ.
+          <p className="font-custom-wedding gold-text text-lg sm:text-xl leading-relaxed min-h-[3.5rem]">
+            <TypewriterText
+              text="სიყვარულით, ბედნიერებით და ახალი დასაწყისით სავსე დღე"
+              startDelay={900}
+              speed={42}
+            />
+          </p>
+          <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto min-h-[3rem]">
+            <TypewriterText
+              text="ჩვენი ცხოვრების უმნიშვნელოვანეს მომენტს თქვენთან ერთად აღვნიშნავთ."
+              startDelay={3600}
+              speed={40}
+            />
           </p>
           <GeorgianOrnament className="mx-auto w-36 mt-7 rotate-180" />
         </div>
@@ -209,8 +219,12 @@ function Index() {
       <Section>
         <div className="canvas-card rounded-lg p-8 sm:p-12 text-center">
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">dress code</p>
-          <h3 className="font-custom-wedding gold-text text-3xl mt-2">პასტელის ჰარმონია</h3>
-          <p className="mt-2 whisper text-sm">Elegant · Soft Tones</p>
+          <h3 className="font-custom-wedding gold-text text-3xl mt-2">დრესკოდი</h3>
+          <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
+            განსაკუთრებული შეზღუდვა ფერებთან დაკავშირებით არ არის — შეგიძლიათ მოირგოთ
+            თქვენთვის სასურველი და კომფორტული სამოსი, რომელიც ზოგად სადღესასწაულო
+            ატმოსფეროს მოუხდება.
+          </p>
           <div className="flex flex-wrap justify-center gap-5 mt-8">
             {DRESS_PALETTE.map((p) => (
               <div key={p.name} className="flex flex-col items-center gap-2">
@@ -222,7 +236,6 @@ function Index() {
                       "inset 0 -4px 8px oklch(0 0 0 / 0.10), inset 0 4px 8px oklch(1 0 0 / 0.5), 0 2px 6px oklch(0.50 0.04 60 / 0.15)",
                   }}
                 />
-                <span className="text-[10px] whisper tracking-wider uppercase">{p.name}</span>
               </div>
             ))}
           </div>
