@@ -124,9 +124,9 @@ function Index() {
                 transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
                 className="font-custom-wedding gold-text text-6xl sm:text-8xl leading-[1.0] my-2"
               >
-                სალი
+                ნინი
                 <span className="block whisper-soft text-3xl sm:text-5xl my-3 italic">&amp;</span>
-                ნიკო
+                დათა
               </motion.h1>
             )}
           </AnimatePresence>
@@ -139,7 +139,7 @@ function Index() {
                 className="mt-10"
               >
                 <GeorgianOrnament className="mx-auto w-44" />
-                <p className="font-custom-wedding whisper text-xl sm:text-2xl mt-3 tracking-[0.3em]">26 · 08 · 2026</p>
+                <p className="font-custom-wedding whisper text-xl sm:text-2xl mt-3 tracking-[0.3em]">20 · 09 · 2026</p>
 
                 <div className="flex justify-center gap-2 sm:gap-3 mt-8">
                   <CountdownPiece value={cd.d} label="დღე" />
@@ -239,8 +239,8 @@ function Index() {
       {/* FOOTER */}
       <footer className="text-center py-16 px-4">
         <GeorgianOrnament className="mx-auto w-44 opacity-70" />
-        <p className="font-custom-wedding gold-text text-2xl mt-4">სალი &amp; ნიკო</p>
-        <p className="text-[10px] whisper mt-2 tracking-[0.4em]">26 · 08 · 2026 · KACHRETI</p>
+        <p className="font-custom-wedding gold-text text-2xl mt-4">ნინი &amp; დათა</p>
+        <p className="text-[10px] whisper mt-2 tracking-[0.4em]">20 · 09 · 2026 · გიუაანი</p>
       </footer>
     </div>
   );
