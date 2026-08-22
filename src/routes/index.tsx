@@ -4,20 +4,21 @@ import { Envelope } from "@/components/wedding/Envelope";
 import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { GeorgianOrnament, GoldVine } from "@/components/wedding/Ornament";
 import { RSVP } from "@/components/wedding/RSVP";
-import { SeatingChart } from "@/components/wedding/SeatingChart";
 import { Timeline } from "@/components/wedding/Timeline";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
 import champagne from "@/assets/champagne.png.asset.json";
-import kachretiHotel from "@/assets/kachreti-hotel.png.asset.json";
+import giuaani from "@/assets/giuaani.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "სალი & ნიკო — 26.08.2026" },
-      { name: "description", content: "სალისა და ნიკოს ქორწილის მოსაწვევი — Ambassadori Kachreti, 26 აგვისტო, 2026" },
-      { property: "og:title", content: "სალი & ნიკო — საქორწინო მოსაწვევი" },
-      { property: "og:description", content: "Ambassadori Kachreti · 26.08.2026" },
+      { title: "ნინი & დათა — 20.09.2026" },
+      { name: "description", content: "ნინისა და დათას ქორწილის მოსაწვევი — გიუაანი მეღვინეობა, 20 სექტემბერი, 2026" },
+      { property: "og:title", content: "ნინი & დათა — საქორწინო მოსაწვევი" },
+      { property: "og:description", content: "გიუაანი მეღვინეობა · 20.09.2026" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
