@@ -74,7 +74,7 @@ function Section({ children, delay = 0 }: { children: React.ReactNode; delay?: n
 function Index() {
   const [opened, setOpened] = useState(false);
   const [step, setStep] = useState(0);
-  const cd = useCountdown(new Date("2026-08-26T17:00:00+04:00"));
+  const cd = useCountdown(new Date("2026-09-20T14:30:00+04:00"));
 
   useEffect(() => {
     if (!opened) return;
@@ -177,13 +177,13 @@ function Index() {
       <Section>
         <div className="canvas-card rounded-lg p-6 sm:p-10 text-center">
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">venue</p>
-          <h3 className="font-custom-wedding gold-text text-3xl mt-2">Ambassadori Kachreti</h3>
-          <p className="mt-2 whisper text-sm">კახეთი, საქართველო</p>
+          <h3 className="font-custom-wedding gold-text text-3xl mt-2">გიუაანი მეღვინეობა</h3>
+          <p className="mt-2 whisper text-sm">ხელის მოწერა და ვახშამი · კახეთი</p>
 
           <div className="mt-6 rounded-md overflow-hidden gold-border aspect-[16/9] relative">
             <img
-              src={kachretiHotel.url}
-              alt="Ambassadori Kachreti"
+              src={giuaani.url}
+              alt="გიუაანი მეღვინეობა — ვახშამის ადგილი"
               className="w-full h-full object-cover"
               draggable={false}
             />
@@ -191,7 +191,7 @@ function Index() {
 
           <motion.a
             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-            href="https://www.google.com/maps/search/?api=1&query=Ambassadori+Kachreti+Resort+%26+Spa"
+            href="https://maps.app.goo.gl/wnw1PHBeNMSh5uaU7?g_st=ic"
             target="_blank" rel="noreferrer"
             className="inline-block mt-6 px-7 py-3 rounded-md font-custom-wedding text-base tracking-widest"
             style={{
@@ -232,8 +232,6 @@ function Index() {
       {/* RSVP */}
       <Section><RSVP /></Section>
 
-      {/* SEATING */}
-      <Section><SeatingChart /></Section>
 
       {/* WISHES */}
       <Section><Wishes /></Section>
