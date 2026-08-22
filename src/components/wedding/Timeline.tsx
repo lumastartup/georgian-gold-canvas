@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import arch from "@/assets/ceremony-arch.png.asset.json";
+import arch from "@/assets/ceremony-arch.jpg.asset.json";
 
 type Step = {
   time: string;
