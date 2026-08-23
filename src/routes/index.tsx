@@ -5,6 +5,7 @@ import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { GeorgianOrnament, GoldVine } from "@/components/wedding/Ornament";
 import { RSVP } from "@/components/wedding/RSVP";
 import { Timeline } from "@/components/wedding/Timeline";
+import { TypewriterText } from "@/components/wedding/Typewriter";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
 import champagne from "@/assets/champagne.png.asset.json";
