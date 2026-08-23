@@ -1,21 +1,29 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
+import { supabase } from "@/integrations/supabase/client";
 import waxEnvelope from "@/assets/pink-envelope.jpg.asset.json";
 
 export function Wishes() {
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim()) return;
-    try {
-      const prev = JSON.parse(localStorage.getItem("wedding-wishes") || "[]");
-      prev.push({ name: name.trim() || "ანონიმური", message: message.trim(), at: new Date().toISOString() });
-      localStorage.setItem("wedding-wishes", JSON.stringify(prev));
-    } catch {}
+    setBusy(true);
+    setError("");
+    const { error: dbError } = await supabase
+      .from("wishes")
+      .insert({ name: name.trim() || null, message: message.trim() });
+    setBusy(false);
+    if (dbError) {
+      setError("ვერ გაიგზავნა, სცადეთ თავიდან");
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -79,16 +87,19 @@ export function Wishes() {
         />
       </div>
 
+      {error && <p className="text-sm text-center text-destructive">{error}</p>}
+
       <motion.button
+        disabled={busy}
         whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}
-        className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow"
+        className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow disabled:opacity-60"
         style={{
           background: "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
           color: "oklch(0.42 0.030 75)",
           border: "1px solid oklch(0.78 0.035 60 / 0.4)",
         }}
       >
-        გაგზავნა
+        {busy ? "..." : "გაგზავნა"}
       </motion.button>
     </form>
   );
