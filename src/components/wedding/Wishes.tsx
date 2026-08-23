@@ -87,16 +87,19 @@ export function Wishes() {
         />
       </div>
 
+      {error && <p className="text-sm text-center text-destructive">{error}</p>}
+
       <motion.button
+        disabled={busy}
         whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}
-        className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow"
+        className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow disabled:opacity-60"
         style={{
           background: "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
           color: "oklch(0.42 0.030 75)",
           border: "1px solid oklch(0.78 0.035 60 / 0.4)",
         }}
       >
-        გაგზავნა
+        {busy ? "..." : "გაგზავნა"}
       </motion.button>
     </form>
   );
