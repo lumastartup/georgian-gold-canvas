@@ -116,6 +116,16 @@ export function Timeline() {
                   რუკაზე ნახვა
                 </a>
               )}
+              {s.photo && (
+                <div className="mx-auto mt-5 w-full max-w-md rounded-md overflow-hidden gold-border aspect-[16/10]">
+                  <img
+                    src={s.photo}
+                    alt={s.photoAlt ?? ""}
+                    draggable={false}
+                    className="w-full h-full object-cover select-none"
+                  />
+                </div>
+              )}
             </motion.li>
           ))}
         </ul>
