@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
-import arch from "@/assets/ceremony-arch.jpg.asset.json";
+import arch from "@/assets/ceremony-aisle.png.asset.json";
+import dinnerTable from "@/assets/giuaani-table.jpg.asset.json";
 
 type Step = {
   time: string;
   title: string;
   place?: string;
   map?: string;
+  photo?: string;
+  photoAlt?: string;
 };
 
 const STEPS: Step[] = [
@@ -26,6 +29,8 @@ const STEPS: Step[] = [
     title: "ვახშამი",
     place: "გიუაანი მეღვინეობა",
     map: "https://maps.app.goo.gl/wnw1PHBeNMSh5uaU7?g_st=ic",
+    photo: dinnerTable.url,
+    photoAlt: "სადღესასწაულო ვახშმის მაგიდა",
   },
 ];
 
