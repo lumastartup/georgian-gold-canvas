@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import pinkEnvelope from "@/assets/pink-envelope.jpg.asset.json";
+import pinkEnvelopeNoSeal from "@/assets/pink-envelope-no-seal.jpg.asset.json";
 
 export function Envelope({ onOpen }: { onOpen: () => void }) {
   const [opening, setOpening] = useState(false);
@@ -33,7 +34,7 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
-            src={pinkEnvelope.url}
+            src={pinkEnvelopeNoSeal.url}
             alt="ვარდისფერი საქორწინო კონვერტი მაქმანითა და ცვილის ბეჭდით"
             className="absolute inset-0 h-full w-full rounded-sm object-cover select-none"
             draggable={false}
@@ -60,7 +61,7 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
             transition={{ duration: 0.9, delay: opening ? 0.48 : 0, ease: [0.65, 0, 0.35, 1] }}
           >
             <img
-              src={pinkEnvelope.url}
+              src={pinkEnvelopeNoSeal.url}
               alt=""
               aria-hidden
               className="h-full w-full object-cover select-none"
