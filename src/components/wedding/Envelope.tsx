@@ -1,93 +1,94 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { GeorgianOrnament } from "./Ornament";
-import champagne from "@/assets/champagne.png.asset.json";
+import pinkEnvelope from "@/assets/pink-envelope.jpg.asset.json";
 
 export function Envelope({ onOpen }: { onOpen: () => void }) {
   const [opening, setOpening] = useState(false);
 
   const handle = () => {
+    if (opening) return;
     setOpening(true);
-    setTimeout(onOpen, 1400);
+    setTimeout(onOpen, 1750);
   };
 
   return (
-    <div className="min-h-[100svh] w-full flex items-center justify-center px-4 py-12 oil-canvas relative overflow-hidden">
-      {/* Decorative champagne bottle */}
-      <motion.img
-        src={champagne.url}
-        alt=""
-        aria-hidden
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 0.35, y: 0 }}
-        transition={{ duration: 1.8, delay: 0.3 }}
-        className="absolute -left-10 bottom-0 h-[70vh] max-h-[640px] w-auto pointer-events-none select-none hidden sm:block"
-        draggable={false}
-      />
-      <motion.img
-        src={champagne.url}
-        alt=""
-        aria-hidden
-        initial={{ opacity: 0, y: 20, rotate: 8 }}
-        animate={{ opacity: 0.3, y: 0, rotate: 8 }}
-        transition={{ duration: 1.8, delay: 0.5 }}
-        className="absolute -right-16 -bottom-10 h-[80vh] max-h-[720px] w-auto pointer-events-none select-none hidden sm:block"
-        draggable={false}
-      />
+    <AnimatePresence>
+      <motion.button
+        type="button"
+        onClick={handle}
+        className="fixed inset-0 z-50 flex min-h-[100svh] w-full cursor-pointer items-center justify-center overflow-hidden bg-background px-3 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset sm:px-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: opening ? 0 : 1 }}
+        transition={opening
+          ? { duration: 0.55, delay: 1.12, ease: "easeInOut" }
+          : { duration: 0.8, ease: "easeOut" }}
+        aria-label="გახსენი მოსაწვევი"
+        aria-busy={opening}
+      >
+        <motion.div
+          className="relative w-full max-w-[900px] overflow-visible rounded-sm shadow-2xl"
+          style={{ aspectRatio: "1336 / 738", perspective: 1500 }}
+          initial={{ y: 24, scale: 0.97 }}
+          animate={{ y: 0, scale: opening ? 1.015 : 1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img
+            src={pinkEnvelope.url}
+            alt="ვარდისფერი საქორწინო კონვერტი მაქმანითა და ცვილის ბეჭდით"
+            className="absolute inset-0 h-full w-full rounded-sm object-cover select-none"
+            draggable={false}
+          />
 
-      <AnimatePresence>
-        {!opening && (
-          <motion.button
-            key="envelope"
-            onClick={handle}
-            className="relative group cursor-pointer outline-none z-10"
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.85, y: -40 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label="გახსენი მოსაწვევი"
+          {/* The shadowed inside is revealed as the flap leaves the envelope. */}
+          <motion.div
+            className="absolute inset-0 bg-blush-deep"
+            style={{ clipPath: "polygon(0 0, 100% 0, 50% 60%)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: opening ? 0.48 : 0 }}
+            transition={{ duration: 0.35, delay: opening ? 0.3 : 0 }}
+          />
+
+          {/* A duplicate of the photographed flap preserves the lace detail while folding. */}
+          <motion.div
+            className="absolute inset-0 origin-top"
+            style={{
+              clipPath: "polygon(0 0, 100% 0, 50% 60%)",
+              transformStyle: "preserve-3d",
+              backfaceVisibility: "hidden",
+            }}
+            animate={{ rotateX: opening ? -178 : 0 }}
+            transition={{ duration: 0.9, delay: opening ? 0.48 : 0, ease: [0.65, 0, 0.35, 1] }}
           >
-            <div
-              className="relative w-[min(86vw,420px)] aspect-[7/5] rounded-md canvas-card overflow-hidden"
-            >
-              <motion.div
-                className="absolute inset-x-0 top-0 origin-top"
-                style={{
-                  height: "55%",
-                  clipPath: "polygon(0 0, 100% 0, 50% 100%)",
-                  background:
-                    "linear-gradient(160deg, oklch(0.92 0.030 25 / 0.7), oklch(0.88 0.025 145 / 0.6))",
-                }}
-                animate={opening ? { rotateX: -180 } : { rotateX: 0 }}
-                transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-              />
-              <div className="absolute inset-3 rounded-sm pointer-events-none border border-[oklch(0.78_0.035_60/0.4)]" />
-              <motion.div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-                animate={{ scale: [1, 1.03, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center font-custom-wedding text-xl"
-                  style={{
-                    background: "linear-gradient(160deg, oklch(0.88 0.040 25), oklch(0.80 0.035 145))",
-                    color: "oklch(0.42 0.030 75)",
-                    boxShadow: "0 4px 14px oklch(0.50 0.04 60 / 0.25)",
-                  }}
-                >
-                  ნ · დ
-                </div>
-              </motion.div>
-              <div className="absolute bottom-5 left-0 right-0 text-center">
-                <GeorgianOrnament className="mx-auto w-32 opacity-70" />
-                <p className="font-custom-wedding whisper text-sm mt-1 tracking-widest">ჩვენი დღე</p>
-              </div>
-            </div>
-          </motion.button>
-        )}
-      </AnimatePresence>
-    </div>
+            <img
+              src={pinkEnvelope.url}
+              alt=""
+              aria-hidden
+              className="h-full w-full object-cover select-none"
+              draggable={false}
+            />
+          </motion.div>
+
+          {/* Isolated photographed seal dissolves before the flap begins to move. */}
+          <motion.div
+            className="absolute inset-0 z-20"
+            style={{ clipPath: "circle(8.5% at 50% 59%)" }}
+            animate={opening
+              ? { opacity: 0, scale: 1.18, filter: "blur(8px)" }
+              : { opacity: 1, scale: [1, 1.025, 1], filter: "blur(0px)" }}
+            transition={opening
+              ? { duration: 0.42, ease: "easeOut" }
+              : { duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <img
+              src={pinkEnvelope.url}
+              alt=""
+              aria-hidden
+              className="h-full w-full object-cover select-none"
+              draggable={false}
+            />
+          </motion.div>
+        </motion.div>
+      </motion.button>
+    </AnimatePresence>
   );
 }
