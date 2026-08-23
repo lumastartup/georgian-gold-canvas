@@ -17,7 +17,7 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
       <motion.button
         type="button"
         onClick={handle}
-        className="fixed inset-0 z-50 flex min-h-[100svh] w-full cursor-pointer items-center justify-center overflow-hidden bg-background px-3 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset sm:px-8"
+        className="fixed inset-0 z-50 flex min-h-[100svh] w-full cursor-pointer overflow-hidden bg-background outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
         initial={{ opacity: 0 }}
         animate={{ opacity: opening ? 0 : 1 }}
         transition={opening
@@ -27,8 +27,8 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
         aria-busy={opening}
       >
         <motion.div
-          className="relative w-full max-w-[900px] overflow-visible rounded-sm shadow-2xl"
-          style={{ aspectRatio: "1336 / 738", perspective: 1500 }}
+          className="relative h-full w-full overflow-hidden shadow-2xl"
+          style={{ perspective: 1500 }}
           initial={{ y: 24, scale: 0.97 }}
           animate={{ y: 0, scale: opening ? 1.015 : 1 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
