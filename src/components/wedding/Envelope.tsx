@@ -29,9 +29,9 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
         <motion.div
           className="relative h-full w-full overflow-hidden shadow-2xl"
           style={{ perspective: 1500 }}
-          initial={{ y: 24, scale: 0.97 }}
-          animate={{ y: 0, scale: opening ? 1.015 : 1 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: opening ? 0 : 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <img
             src={pinkEnvelopeNoSeal.url}
