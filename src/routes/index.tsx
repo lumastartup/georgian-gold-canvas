@@ -1,14 +1,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Envelope } from "@/components/wedding/Envelope";
+import { IntroVideo } from "@/components/wedding/IntroVideo";
 import { MusicToggle } from "@/components/wedding/MusicToggle";
-import { GeorgianOrnament, GoldVine } from "@/components/wedding/Ornament";
+import { GeorgianOrnament } from "@/components/wedding/Ornament";
 import { RSVP } from "@/components/wedding/RSVP";
 import { Timeline } from "@/components/wedding/Timeline";
 import { TypewriterText } from "@/components/wedding/Typewriter";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
-import champagne from "@/assets/champagne.png.asset.json";
 import giuaani from "@/assets/giuaani-venue.png.asset.json";
 
 export const Route = createFileRoute("/")({
