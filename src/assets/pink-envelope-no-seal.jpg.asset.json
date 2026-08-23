@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "4d49af21-2289-45f1-8c8b-754453298c01",
-  "project_id": "542e8ded-d20d-480a-ab35-d84d5e11f6e9",
-  "url": "/__l5e/assets-v1/4d49af21-2289-45f1-8c8b-754453298c01/pink-envelope-no-seal.jpg",
-  "r2_key": "a/v1/542e8ded-d20d-480a-ab35-d84d5e11f6e9/4d49af21-2289-45f1-8c8b-754453298c01/pink-envelope-no-seal.jpg",
-  "original_filename": "pink-envelope-no-seal.jpg",
-  "size": 1596331,
   "content_type": "image/png",
-  "created_at": "2026-08-23T10:45:32Z"
+  "created_at": "2026-08-23T10:45:32Z",
+  "original_filename": "pink-envelope-no-seal.jpg",
+  "project_id": "c622b9ed-5bba-445c-8144-c3e8d0f9e965",
+  "r2_key": "a/v1/c622b9ed-5bba-445c-8144-c3e8d0f9e965/4d49af21-2289-45f1-8c8b-754453298c01/pink-envelope-no-seal.jpg",
+  "size": 1596331,
+  "url": "/__l5e/assets-v1/4d49af21-2289-45f1-8c8b-754453298c01/pink-envelope-no-seal.jpg",
+  "version": 1
 }
