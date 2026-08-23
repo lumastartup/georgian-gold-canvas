@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
-import arch from "@/assets/ceremony-arch.jpg.asset.json";
+import arch from "@/assets/ceremony-aisle.png.asset.json";
+import dinnerTable from "@/assets/giuaani-table.jpg.asset.json";
 
 type Step = {
   time: string;
   title: string;
   place?: string;
   map?: string;
+  photo?: string;
+  photoAlt?: string;
 };
 
 const STEPS: Step[] = [
@@ -26,6 +29,8 @@ const STEPS: Step[] = [
     title: "ვახშამი",
     place: "გიუაანი მეღვინეობა",
     map: "https://maps.app.goo.gl/wnw1PHBeNMSh5uaU7?g_st=ic",
+    photo: dinnerTable.url,
+    photoAlt: "სადღესასწაულო ვახშმის მაგიდა",
   },
 ];
 
@@ -39,18 +44,21 @@ export function Timeline() {
         <p className="whisper text-xs sm:text-sm mt-2 italic">წუთები, რომელთაც ერთად გავიზიარებთ</p>
       </div>
 
-      {/* Ceremony arch — centered watercolor centerpiece */}
-      <motion.img
-        src={arch.url}
-        alt=""
-        aria-hidden
-        draggable={false}
+      {/* Ceremony aisle — framed watercolor centerpiece */}
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        className="block mx-auto w-[78%] sm:w-[55%] max-w-md h-auto select-none pointer-events-none mt-6 mb-2 drop-shadow-[0_8px_20px_rgba(120,90,60,0.12)]"
-      />
+        className="mx-auto mt-8 mb-2 w-full max-w-md rounded-md overflow-hidden gold-border aspect-[4/5] sm:aspect-[16/11]"
+      >
+        <img
+          src={arch.url}
+          alt="საქორწინო ცერემონიის ადგილი"
+          draggable={false}
+          className="w-full h-full object-cover select-none pointer-events-none"
+        />
+      </motion.div>
 
       {/* Vertical timeline */}
       <div className="relative max-w-2xl mx-auto mt-8">
@@ -107,6 +115,16 @@ export function Timeline() {
                 >
                   რუკაზე ნახვა
                 </a>
+              )}
+              {s.photo && (
+                <div className="mx-auto mt-5 w-full max-w-md rounded-md overflow-hidden gold-border aspect-[16/10]">
+                  <img
+                    src={s.photo}
+                    alt={s.photoAlt ?? ""}
+                    draggable={false}
+                    className="w-full h-full object-cover select-none"
+                  />
+                </div>
               )}
             </motion.li>
           ))}

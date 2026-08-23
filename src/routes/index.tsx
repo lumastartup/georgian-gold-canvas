@@ -9,7 +9,7 @@ import { TypewriterText } from "@/components/wedding/Typewriter";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
 import champagne from "@/assets/champagne.png.asset.json";
-import giuaani from "@/assets/giuaani.jpg.asset.json";
+import giuaani from "@/assets/giuaani-venue.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,7 +53,6 @@ const DRESS_PALETTE = [
   { name: "ბლაში", c: "oklch(0.88 0.040 25)" },
   { name: "შამპანი", c: "oklch(0.90 0.028 80)" },
   { name: "სეიჯი", c: "oklch(0.80 0.035 145)" },
-  { name: "კრემი", c: "oklch(0.94 0.018 82)" },
   { name: "ბეჟი", c: "oklch(0.82 0.030 75)" },
   { name: "მტრედი", c: "oklch(0.72 0.020 250)" },
 ];
