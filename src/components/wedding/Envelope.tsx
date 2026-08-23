@@ -70,24 +70,26 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
           </motion.div>
 
           {/* Isolated photographed seal dissolves before the flap begins to move. */}
-          <motion.div
-            className="absolute inset-0 z-20"
-            style={{ clipPath: "circle(8.5% at 50% 59%)" }}
-            animate={opening
-              ? { opacity: 0, scale: 1.18, filter: "blur(8px)" }
-              : { opacity: 1, scale: [1, 1.025, 1], filter: "blur(0px)" }}
-            transition={opening
-              ? { duration: 0.42, ease: "easeOut" }
-              : { duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <img
-              src={pinkEnvelope.url}
-              alt=""
-              aria-hidden
-              className="h-full w-full object-cover select-none"
-              draggable={false}
-            />
-          </motion.div>
+          <AnimatePresence>
+            {!opening && (
+              <motion.div
+                className="absolute inset-0 z-20"
+                style={{ clipPath: "circle(8.5% at 50% 59%)" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, scale: [1, 1.025, 1], filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 1.18, filter: "blur(8px)" }}
+                transition={{ duration: 0.42, ease: "easeOut" }}
+              >
+                <img
+                  src={pinkEnvelope.url}
+                  alt=""
+                  aria-hidden
+                  className="h-full w-full object-cover select-none"
+                  draggable={false}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </motion.button>
     </AnimatePresence>
