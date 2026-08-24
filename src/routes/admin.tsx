@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import * as XLSX from "xlsx";
 import { getAdminData, type RsvpRow, type WishRow } from "@/lib/admin.functions";
 
@@ -23,29 +23,31 @@ function fmt(d: string) {
 
 function AdminPage() {
   const load = useServerFn(getAdminData);
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [rsvps, setRsvps] = useState<RsvpRow[] | null>(null);
-  const [wishes, setWishes] = useState<WishRow[]>([]);
+  
+  // უპაროლოდ ვქაჩავთ მონაცემებს ავტომატურად
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["admin-data"],
+    queryFn: () => load(),
+  });
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setBusy(true);
-    setError("");
-    try {
-      const res = await load({ data: { password } });
-      if (!res.ok) {
-        setError("პაროლი არასწორია");
-      } else {
-        setRsvps(res.rsvps);
-        setWishes(res.wishes);
-      }
-    } catch {
-      setError("დაფიქსირდა შეცდომა, სცადეთ თავიდან");
-    }
-    setBusy(false);
-  };
+  if (isLoading) {
+    return (
+      <div className="min-h-[100svh] flex items-center justify-center px-4">
+        <p className="whisper text-sm">იტვირთება მონაცემები...</p>
+      </div>
+    );
+  }
+
+  if (error || !data || !data.ok) {
+    return (
+      <div className="min-h-[100svh] flex items-center justify-center px-4">
+        <p className="text-destructive text-sm">დაფიქსირდა შეცდომა მონაცემების ჩატვირთვისას.</p>
+      </div>
+    );
+  }
+
+  const rsvps = data.rsvps;
+  const wishes = data.wishes;
 
   const exportExcel = () => {
     if (!rsvps) return;
@@ -76,41 +78,6 @@ function AdminPage() {
     );
     XLSX.writeFile(wb, "nini-data-wedding.xlsx");
   };
-
-  if (!rsvps) {
-    return (
-      <div className="min-h-[100svh] flex items-center justify-center px-4">
-        <form
-          onSubmit={submit}
-          className="canvas-card rounded-lg p-8 w-full max-w-sm space-y-5 text-center"
-        >
-          <p className="whisper text-[10px] uppercase tracking-[0.4em]">private</p>
-          <h1 className="font-custom-wedding gold-text text-3xl">ადმინ პანელი</h1>
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="პაროლი"
-            className="w-full px-4 py-3 rounded-md gold-border bg-transparent focus:outline-none focus:gold-glow text-center"
-          />
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <button
-            disabled={busy}
-            className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow disabled:opacity-60"
-            style={{
-              background:
-                "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
-              color: "oklch(0.42 0.030 75)",
-              border: "1px solid oklch(0.78 0.035 60 / 0.4)",
-            }}
-          >
-            {busy ? "..." : "შესვლა"}
-          </button>
-        </form>
-      </div>
-    );
-  }
 
   const coming = rsvps.filter((r) => r.attending);
   const notComing = rsvps.filter((r) => !r.attending);
