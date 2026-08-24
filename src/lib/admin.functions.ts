@@ -1,5 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { z } from "zod";
 
 export type RsvpRow = {
   id: string;
@@ -18,14 +17,7 @@ export type WishRow = {
 };
 
 export const getAdminData = createServerFn({ method: "POST" })
-  .inputValidator((data) => z.object({ password: z.string().min(1) }).parse(data))
-  .handler(async ({ data }) => {
-    const expected = "ninidata20";
-
-    if (data.password !== expected) {
-      return { ok: false as const };
-    }
-
+  .handler(async () => {
     try {
       const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
