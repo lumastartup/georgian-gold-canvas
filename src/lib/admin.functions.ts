@@ -20,26 +20,30 @@ export type WishRow = {
 export const getAdminData = createServerFn({ method: "POST" })
   .inputValidator((data) => z.object({ password: z.string().min(1) }).parse(data))
   .handler(async ({ data }) => {
-    // ვამოწმებთ ვერსელის ცვლადს, ხოლო თუ არ წაიკითხა, ვიყენებთ პირდაპირ "ninidata20"-ს
     const expected = process.env["WEDDING_ADMIN_PASSWORD"] || "ninidata20";
-    
+
     if (data.password !== expected) {
       return { ok: false as const };
     }
 
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const [rsvps, wishes] = await Promise.all([
-      supabaseAdmin.from("rsvps").select("*").order("created_at", { ascending: false }),
-      supabaseAdmin.from("wishes").select("*").order("created_at", { ascending: false }),
-    ]);
+      const [rsvps, wishes] = await Promise.all([
+        supabaseAdmin.from("rsvps").select("*").order("created_at", { ascending: false }),
+        supabaseAdmin.from("wishes").select("*").order("created_at", { ascending: false }),
+      ]);
 
-    if (rsvps.error) throw new Error(rsvps.error.message);
-    if (wishes.error) throw new Error(wishes.error.message);
+      if (rsvps.error) throw new Error(`RSVP Error: ${rsvps.error.message}`);
+      if (wishes.error) throw new Error(`Wishes Error: ${wishes.error.message}`);
 
-    return {
-      ok: true as const,
-      rsvps: (rsvps.data ?? []) as RsvpRow[],
-      wishes: (wishes.data ?? []) as WishRow[],
-    };
+      return {
+        ok: true as const,
+        rsvps: (rsvps.data ?? []) as RsvpRow[],
+        wishes: (wishes.data ?? []) as WishRow[],
+      };
+    } catch (err: any) {
+      console.error("ADMIN ERROR:", err?.message || err);
+      throw new Error(err?.message || "Database connection error");
+    }
   });
