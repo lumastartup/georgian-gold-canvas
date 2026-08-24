@@ -174,3 +174,69 @@
   50% { opacity: 1; }
 }
 .animate-shimmer { animation: shimmer 6s ease-in-out infinite; }
+
+/* Sparkling shimmer for headline text */
+@keyframes sparkle-sweep {
+  0% { background-position: -150% 0; }
+  100% { background-position: 250% 0; }
+}
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.6) rotate(0deg); }
+  40% { opacity: 1; transform: scale(1) rotate(20deg); }
+  70% { opacity: 0.25; transform: scale(0.8) rotate(-10deg); }
+}
+
+.sparkle-text {
+  position: relative;
+  display: inline-block;
+  background-image: linear-gradient(
+    100deg,
+    currentColor 0%,
+    currentColor 38%,
+    oklch(0.93 0.09 92) 47%,
+    oklch(1 0.02 95) 52%,
+    oklch(0.93 0.09 92) 57%,
+    currentColor 66%,
+    currentColor 100%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sparkle-sweep 5.5s ease-in-out infinite;
+}
+
+.sparkle-text::before,
+.sparkle-text::after {
+  content: "";
+  position: absolute;
+  width: 0.42em;
+  height: 0.42em;
+  background: oklch(0.95 0.07 92);
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z' fill='black'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z' fill='black'/></svg>");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+.sparkle-text::before {
+  top: -0.1em;
+  left: -0.25em;
+  animation: sparkle-twinkle 4.2s ease-in-out infinite;
+}
+.sparkle-text::after {
+  bottom: 0em;
+  right: -0.28em;
+  width: 0.3em;
+  height: 0.3em;
+  animation: sparkle-twinkle 4.2s ease-in-out 2.1s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkle-text,
+  .sparkle-text::before,
+  .sparkle-text::after { animation: none; }
+  .sparkle-text { -webkit-text-fill-color: currentColor; }
+}
