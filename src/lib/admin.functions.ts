@@ -20,8 +20,10 @@ export type WishRow = {
 export const getAdminData = createServerFn({ method: "POST" })
   .inputValidator((data) => z.object({ password: z.string().min(1) }).parse(data))
   .handler(async ({ data }) => {
-    const expected = process.env["WEDDING_ADMIN_PASSWORD"];
-    if (!expected || data.password !== expected) {
+    // ვამოწმებთ ვერსელის ცვლადს, ხოლო თუ არ წაიკითხა, ვიყენებთ პირდაპირ "ninidata20"-ს
+    const expected = process.env["WEDDING_ADMIN_PASSWORD"] || "ninidata20";
+    
+    if (data.password !== expected) {
       return { ok: false as const };
     }
 
