@@ -14,7 +14,10 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "ნინი & დათა — 20.09.2026" },
-      { name: "description", content: "ნინისა და დათას ქორწილის მოსაწვევი — გიუაანი მეღვინეობა, 20 სექტემბერი, 2026" },
+      {
+        name: "description",
+        content: "ნინისა და დათას ქორწილის მოსაწვევი — გიუაანი მეღვინეობა, 20 სექტემბერი, 2026",
+      },
       { property: "og:title", content: "ნინი & დათა — საქორწინო მოსაწვევი" },
       { property: "og:description", content: "გიუაანი მეღვინეობა · 20.09.2026" },
       { property: "og:type", content: "website" },
@@ -27,7 +30,9 @@ export const Route = createFileRoute("/")({
 function CountdownPiece({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center gold-border rounded-md px-4 py-3 min-w-[68px]">
-      <span className="font-custom-wedding gold-text text-3xl leading-none">{String(value).padStart(2, "0")}</span>
+      <span className="font-custom-wedding gold-text text-3xl leading-none">
+        {String(value).padStart(2, "0")}
+      </span>
       <span className="text-[9px] tracking-[0.25em] uppercase whisper mt-1">{label}</span>
     </div>
   );
@@ -97,7 +102,8 @@ function Index() {
           <AnimatePresence>
             {step >= 1 && (
               <motion.p
-                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2 }}
                 className="whisper text-xs sm:text-sm uppercase tracking-[0.4em] mb-8"
               >
@@ -109,7 +115,8 @@ function Index() {
           <AnimatePresence>
             {step >= 2 && (
               <motion.h1
-                initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
                 className="font-custom-wedding gold-text text-6xl sm:text-8xl leading-[1.0] my-2"
               >
@@ -123,12 +130,15 @@ function Index() {
           <AnimatePresence>
             {step >= 3 && (
               <motion.div
-                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2 }}
                 className="mt-10"
               >
                 <GeorgianOrnament className="mx-auto w-44" />
-                <p className="font-custom-wedding whisper text-xl sm:text-2xl mt-3 tracking-[0.3em]">20 · 09 · 2026</p>
+                <p className="font-custom-wedding whisper text-xl sm:text-2xl mt-3 tracking-[0.3em]">
+                  20 · 09 · 2026
+                </p>
 
                 <div className="flex justify-center gap-2 sm:gap-3 mt-8">
                   <CountdownPiece value={cd.d} label="დღე" />
@@ -170,7 +180,9 @@ function Index() {
       </Section>
 
       {/* TIMELINE */}
-      <Section><Timeline /></Section>
+      <Section>
+        <Timeline />
+      </Section>
 
       {/* LOCATION */}
       <Section>
@@ -189,12 +201,15 @@ function Index() {
           </div>
 
           <motion.a
-            whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             href="https://maps.app.goo.gl/wnw1PHBeNMSh5uaU7?g_st=ic"
-            target="_blank" rel="noreferrer"
+            target="_blank"
+            rel="noreferrer"
             className="inline-block mt-6 px-7 py-3 rounded-md font-custom-wedding text-base tracking-widest"
             style={{
-              background: "linear-gradient(160deg, oklch(0.92 0.030 25 / 0.5), oklch(0.88 0.025 145 / 0.5))",
+              background:
+                "linear-gradient(160deg, oklch(0.92 0.030 25 / 0.5), oklch(0.88 0.025 145 / 0.5))",
               color: "oklch(0.42 0.030 75)",
               border: "1px solid oklch(0.78 0.035 60 / 0.4)",
             }}
@@ -210,9 +225,8 @@ function Index() {
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">dress code</p>
           <h3 className="font-custom-wedding gold-text text-3xl mt-2">დრესკოდი</h3>
           <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
-            განსაკუთრებული შეზღუდვა ფერებთან დაკავშირებით არ არის — შეგიძლიათ მოირგოთ
-            თქვენთვის სასურველი და კომფორტული სამოსი, რომელიც ზოგად სადღესასწაულო
-            ატმოსფეროს მოუხდება.
+            განსაკუთრებული შეზღუდვა ფერებთან დაკავშირებით არ არის — შეგიძლიათ მოირგოთ თქვენთვის
+            სასურველი და კომფორტული სამოსი, რომელიც ზოგად სადღესასწაულო ატმოსფეროს მოუხდება.
           </p>
           <div className="flex flex-wrap justify-center gap-5 mt-8">
             {DRESS_PALETTE.map((p) => (
@@ -232,11 +246,14 @@ function Index() {
       </Section>
 
       {/* RSVP */}
-      <Section><RSVP /></Section>
-
+      <Section>
+        <RSVP />
+      </Section>
 
       {/* WISHES */}
-      <Section><Wishes /></Section>
+      <Section>
+        <Wishes />
+      </Section>
 
       {/* FOOTER */}
       <footer className="text-center py-16 px-4">

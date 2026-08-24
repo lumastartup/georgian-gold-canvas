@@ -80,7 +80,10 @@ function AdminPage() {
   if (!rsvps) {
     return (
       <div className="min-h-[100svh] flex items-center justify-center px-4">
-        <form onSubmit={submit} className="canvas-card rounded-lg p-8 w-full max-w-sm space-y-5 text-center">
+        <form
+          onSubmit={submit}
+          className="canvas-card rounded-lg p-8 w-full max-w-sm space-y-5 text-center"
+        >
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">private</p>
           <h1 className="font-custom-wedding gold-text text-3xl">ადმინ პანელი</h1>
           <input
@@ -96,7 +99,8 @@ function AdminPage() {
             disabled={busy}
             className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow disabled:opacity-60"
             style={{
-              background: "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
+              background:
+                "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
               color: "oklch(0.42 0.030 75)",
               border: "1px solid oklch(0.78 0.035 60 / 0.4)",
             }}
@@ -140,7 +144,9 @@ function AdminPage() {
             {wishes.map((w) => (
               <li key={w.id} className="gold-border rounded-md p-4">
                 <p className="font-custom-wedding gold-text text-lg">{w.name || "ანონიმური"}</p>
-                <p className="whisper text-sm mt-1 leading-loose whitespace-pre-wrap">{w.message}</p>
+                <p className="whisper text-sm mt-1 leading-loose whitespace-pre-wrap">
+                  {w.message}
+                </p>
                 <p className="whisper text-[10px] mt-2 tracking-widest">{fmt(w.created_at)}</p>
               </li>
             ))}
