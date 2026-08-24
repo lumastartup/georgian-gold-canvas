@@ -51,11 +51,15 @@ export function RSVP() {
     <div className="relative w-full mx-auto max-w-xl canvas-card rounded-lg">
       <form onSubmit={submit} className="relative space-y-5 p-6 sm:p-10">
         <div className="text-center">
-          <h3 className="font-custom-wedding gold-text text-2xl sm:text-3xl">დაგვიდასტურეთ თქვენი მობრძანება</h3>
+          <h3 className="font-custom-wedding gold-text text-2xl sm:text-3xl">
+            დაგვიდასტურეთ თქვენი მობრძანება
+          </h3>
         </div>
 
         <div>
-          <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">სახელი და გვარი</label>
+          <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">
+            სახელი და გვარი
+          </label>
           <input
             required
             value={name}
@@ -65,7 +69,9 @@ export function RSVP() {
         </div>
 
         <div>
-          <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-3">დასწრება</label>
+          <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-3">
+            დასწრება
+          </label>
           <div className="grid grid-cols-2 gap-3">
             {[
               { v: "yes", label: "მოვდივარ" },
@@ -86,9 +92,15 @@ export function RSVP() {
         </div>
 
         {attending === "yes" && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="space-y-6 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            className="space-y-6 overflow-hidden"
+          >
             <div>
-              <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">სტუმრები</label>
+              <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">
+                სტუმრები
+              </label>
               <select
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
@@ -100,7 +112,9 @@ export function RSVP() {
               </select>
             </div>
             <div>
-              <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">მენიუ</label>
+              <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">
+                მენიუ
+              </label>
               <select
                 value={menu}
                 onChange={(e) => setMenu(e.target.value)}
@@ -123,7 +137,8 @@ export function RSVP() {
           whileTap={{ scale: 0.99 }}
           className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow disabled:opacity-60"
           style={{
-            background: "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
+            background:
+              "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
             color: "oklch(0.42 0.030 75)",
             border: "1px solid oklch(0.78 0.035 60 / 0.4)",
           }}
