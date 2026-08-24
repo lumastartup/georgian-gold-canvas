@@ -23,7 +23,7 @@ export function IntroVideo({ onDone }: { onDone: () => void }) {
           key="intro"
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 bg-black overflow-hidden"
+          className="fixed inset-0 z-50 overflow-hidden bg-foreground"
           onClick={finish}
         >
           <video
@@ -38,10 +38,14 @@ export function IntroVideo({ onDone }: { onDone: () => void }) {
           />
 
           <motion.button
+            type="button"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.4, duration: 1.2 }}
-            onClick={finish}
+            onClick={(event) => {
+              event.stopPropagation();
+              finish();
+            }}
             className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full text-[11px] tracking-[0.35em] uppercase"
             style={{
               color: "oklch(0.98 0 0 / 0.85)",

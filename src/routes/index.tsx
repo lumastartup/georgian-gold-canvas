@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { IntroVideo } from "@/components/wedding/IntroVideo";
 import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
@@ -56,7 +56,7 @@ const DRESS_PALETTE = [
   { name: "მტრედი", c: "oklch(0.72 0.020 250)" },
 ];
 
-function Section({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function Section({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -85,7 +85,7 @@ function Index() {
     return () => timers.forEach(clearTimeout);
   }, [opened]);
 
-  if (!opened) return <Envelope onOpen={() => setOpened(true)} />;
+  if (!opened) return <IntroVideo onDone={() => setOpened(true)} />;
 
   return (
     <div className="relative">
@@ -93,16 +93,6 @@ function Index() {
 
       {/* HERO */}
       <section className="relative min-h-[100svh] flex items-center justify-center px-4 overflow-hidden oil-canvas">
-        <GoldVine className="absolute left-0 top-10 w-14 sm:w-20 opacity-50" />
-        <GoldVine className="absolute right-0 bottom-10 w-14 sm:w-20 opacity-50 scale-x-[-1]" />
-        <img
-          src={champagne.url}
-          alt=""
-          aria-hidden
-          className="absolute -right-10 bottom-0 h-[55vh] max-h-[520px] w-auto opacity-25 pointer-events-none select-none"
-          draggable={false}
-        />
-
         <div className="relative text-center max-w-2xl mx-auto py-20 z-10">
           <AnimatePresence>
             {step >= 1 && (
