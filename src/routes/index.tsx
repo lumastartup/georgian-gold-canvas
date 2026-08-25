@@ -158,26 +158,13 @@ function Index() {
       <Section>
         <div className="canvas-card rounded-lg p-8 sm:p-12 text-center">
           <GeorgianOrnament className="mx-auto w-36 mb-6" />
-          <p className="whisper text-[10px] uppercase tracking-[0.4em] mb-4 min-h-[1.25rem]">
-            <TypewriterText text="გეპატიჟებით" startDelay={300} speed={55} />
-          </p>
-          <p className="font-custom-wedding gold-text text-lg sm:text-xl leading-relaxed min-h-[3.5rem]">
-            <TypewriterText
-              text="სიყვარულით, ბედნიერებით და ახალი დასაწყისით სავსე დღე"
-              startDelay={900}
-              speed={42}
-            />
-          </p>
-          <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto min-h-[3rem]">
-            <TypewriterText
-              text="ჩვენი ცხოვრების უმნიშვნელოვანეს მომენტს თქვენთან ერთად აღვნიშნავთ."
-              startDelay={3600}
-              speed={40}
-            />
+          <p className="font-custom-wedding gold-text sparkle-text text-lg sm:text-2xl leading-relaxed max-w-xl mx-auto">
+            გეპატიჟებით ჩვენი ცხოვრების ერთ-ერთი ყველაზე მნიშვნელოვანი დღის გასაზიარებლად
           </p>
           <GeorgianOrnament className="mx-auto w-36 mt-7 rotate-180" />
         </div>
       </Section>
+
 
       {/* TIMELINE */}
       <Section>
