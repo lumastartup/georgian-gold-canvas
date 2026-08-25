@@ -32,7 +32,13 @@ function AdminPage() {
   const mutation = useMutation({
     mutationFn: (pw: string) => fetchAdminData({ data: { password: pw } }),
   });
-  const data = mutation.data;
+  const result = mutation.data;
+  const data = result && result.ok ? result : null;
+  const errorMessage = mutation.isError
+    ? "სერვერთან კავშირი ვერ დამყარდა"
+    : result && !result.ok
+      ? result.message
+      : null;
 
   if (!data) {
     return (
@@ -54,9 +60,7 @@ function AdminPage() {
             placeholder="პაროლი"
             className="w-full px-4 py-3 rounded-md gold-border bg-transparent focus:outline-none focus:gold-glow text-center"
           />
-          {mutation.isError && (
-            <p className="whisper text-sm text-destructive">პაროლი არასწორია</p>
-          )}
+          {errorMessage && <p className="whisper text-sm text-destructive">{errorMessage}</p>}
           <button
             disabled={mutation.isPending}
             className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow disabled:opacity-60"
@@ -78,6 +82,7 @@ function AdminPage() {
   const wishes = data.wishes;
   const coming = rsvps.filter((r) => r.attending);
   const notComing = rsvps.filter((r) => !r.attending);
+
 
 
   const exportExcel = () => {
