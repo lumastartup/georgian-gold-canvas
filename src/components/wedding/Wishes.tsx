@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
 import { supabase } from "@/integrations/supabase/client";
-import waxEnvelope from "@/assets/pink-envelope.jpg.asset.json";
+import waxEnvelope from "@/assets/pink-envelope.jpg";
 
 export function Wishes() {
   const [submitted, setSubmitted] = useState(false);
@@ -48,7 +48,7 @@ export function Wishes() {
     <form onSubmit={submit} className="canvas-card rounded-lg p-6 sm:p-10 space-y-6">
       <div className="text-center">
         <motion.img
-          src={waxEnvelope.url}
+          src={waxEnvelope}
           alt="სურვილების კონვერტი ცვილის ბეჭდით"
           initial={{ opacity: 0, y: 12, rotate: -2 }}
           whileInView={{ opacity: 1, y: 0, rotate: 0 }}

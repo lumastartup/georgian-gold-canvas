@@ -8,7 +8,7 @@ import { Timeline } from "@/components/wedding/Timeline";
 import { TypewriterText } from "@/components/wedding/Typewriter";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
-import giuaani from "@/assets/giuaani-venue.png.asset.json";
+import giuaani from "@/assets/giuaani-venue.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -193,7 +193,7 @@ function Index() {
 
           <div className="mt-6 rounded-md overflow-hidden gold-border aspect-[16/9] relative">
             <img
-              src={giuaani.url}
+              src={giuaani}
               alt="გიუაანი მეღვინეობა — ვახშამის ადგილი"
               className="w-full h-full object-cover"
               draggable={false}

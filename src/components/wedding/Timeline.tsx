@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import arch from "@/assets/ceremony-aisle.png.asset.json";
-import dinnerTable from "@/assets/giuaani-table.jpg.asset.json";
+import arch from "@/assets/ceremony-aisle.webp";
+import dinnerTable from "@/assets/giuaani-table.jpg";
 
 type Step = {
   time: string;
@@ -29,7 +29,7 @@ const STEPS: Step[] = [
     title: "ვახშამი",
     place: "გიუაანი მეღვინეობა",
     map: "https://maps.app.goo.gl/wnw1PHBeNMSh5uaU7?g_st=ic",
-    photo: dinnerTable.url,
+    photo: dinnerTable,
     photoAlt: "სადღესასწაულო ვახშმის მაგიდა",
   },
 ];
@@ -53,7 +53,7 @@ export function Timeline() {
         className="mx-auto mt-8 mb-2 w-full max-w-md rounded-md overflow-hidden gold-border aspect-[4/5] sm:aspect-[16/11]"
       >
         <img
-          src={arch.url}
+          src={arch}
           alt="საქორწინო ცერემონიის ადგილი"
           draggable={false}
           className="w-full h-full object-cover select-none pointer-events-none"
