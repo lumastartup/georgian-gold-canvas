@@ -91,11 +91,14 @@ function Index() {
     return () => timers.forEach(clearTimeout);
   }, [opened]);
 
-  if (!opened) return <IntroVideo onDone={() => setOpened(true)} />;
-
   return (
+    <>
+      <MusicToggle hidden={!opened} />
+      {!opened ? <IntroVideo onDone={() => setOpened(true)} /> : null}
+      {opened ? (
     <div className="relative">
-      <MusicToggle />
+
+
 
       {/* HERO */}
       <section className="relative min-h-[100svh] flex items-center justify-center px-4 overflow-hidden oil-canvas">
@@ -262,5 +265,8 @@ function Index() {
         <p className="text-[10px] whisper mt-2 tracking-[0.4em]">20 · 09 · 2026 · გიუაანი</p>
       </footer>
     </div>
+      ) : null}
+    </>
   );
 }
+
