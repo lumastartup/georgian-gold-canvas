@@ -5,10 +5,11 @@ import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
 import { RSVP } from "@/components/wedding/RSVP";
 import { Timeline } from "@/components/wedding/Timeline";
-import { TypewriterText } from "@/components/wedding/Typewriter";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
 import giuaani from "@/assets/giuaani-venue.webp";
+import dresscode from "@/assets/dresscode.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
