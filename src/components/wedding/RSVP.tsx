@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { submitPublicRecord } from "@/lib/public-submissions";
 
 export function RSVP() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,17 +18,18 @@ export function RSVP() {
     setBusy(true);
     setError("");
     
-    // ბაზაში არსებული სვეტები: name, attending
-    const { error: dbError } = await supabase.from("rsvps").insert({
-      name: name.trim(),
-      attending: attending === "მოვდივარ",
-    });
-    
-    setBusy(false);
-    if (dbError) {
+    try {
+      await submitPublicRecord("rsvps", {
+        name: name.trim(),
+        attending: attending === "მოვდივარ",
+      });
+    } catch (submissionError) {
+      console.error("[rsvp] submission failed", submissionError);
+      setBusy(false);
       setError("ვერ გაიგზავნა, სცადეთ თავიდან");
       return;
     }
+    setBusy(false);
     setSubmitted(true);
   };
 
