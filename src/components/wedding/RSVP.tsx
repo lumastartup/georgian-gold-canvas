@@ -111,7 +111,6 @@ export function RSVP() {
               >
                 <option className="bg-card">მხოლოდ მე</option>
                 <option className="bg-card">+1 თანმხლები</option>
-                <option className="bg-card">ოჯახით</option>
               </select>
             </div>
             {guests === "+1 თანმხლები" && (
