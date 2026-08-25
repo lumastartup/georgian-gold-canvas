@@ -211,10 +211,22 @@ function Index() {
         <div className="canvas-card rounded-lg p-8 sm:p-12 text-center">
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">dress code</p>
           <h3 className="font-custom-wedding gold-text sparkle-text text-3xl mt-2">დრესკოდი</h3>
-          <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
+
+          <div className="mt-6 rounded-md overflow-hidden gold-border">
+            <img
+              src={dresscode.url}
+              alt="დრესკოდი — საღამოს სამოსი"
+              className="w-full h-auto"
+              draggable={false}
+              loading="lazy"
+            />
+          </div>
+
+          <p className="mt-6 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
             განსაკუთრებული შეზღუდვა ფერებთან დაკავშირებით არ არის — შეგიძლიათ მოირგოთ თქვენთვის
             სასურველი და კომფორტული სამოსი, რომელიც ზოგად სადღესასწაულო ატმოსფეროს მოუხდება.
           </p>
+
           <div className="flex flex-wrap justify-center gap-5 mt-8">
             {DRESS_PALETTE.map((p) => (
               <div key={p.name} className="flex flex-col items-center gap-2">
