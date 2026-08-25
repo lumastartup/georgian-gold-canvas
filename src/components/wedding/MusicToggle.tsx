@@ -1,45 +1,79 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+const VIDEO_ID = "yKKYpjN3N3U";
+
 export function MusicToggle() {
-  const [playing, setPlaying] = useState(false);
-  const ref = useRef<HTMLAudioElement | null>(null);
+  const [playing, setPlaying] = useState(true);
+  const frameRef = useRef<HTMLIFrameElement | null>(null);
+
+  const post = (func: string) => {
+    frameRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: "command", func, args: [] }),
+      "*",
+    );
+  };
 
   useEffect(() => {
-    const a = new Audio("https://cdn.pixabay.com/download/audio/2022/10/25/audio_946bc9c8f2.mp3?filename=romantic-piano-15467.mp3");
-    a.loop = true;
-    a.volume = 0.5;
-    ref.current = a;
-    return () => { a.pause(); };
+    // nudge playback shortly after mount (mount follows the user's tap on the intro)
+    const t = setTimeout(() => {
+      post("unMute");
+      post("playVideo");
+    }, 800);
+    return () => clearTimeout(t);
   }, []);
 
   const toggle = () => {
-    if (!ref.current) return;
-    if (playing) ref.current.pause();
-    else ref.current.play().catch(() => {});
+    if (playing) {
+      post("pauseVideo");
+    } else {
+      post("unMute");
+      post("playVideo");
+    }
     setPlaying(!playing);
   };
 
   return (
-    <motion.button
-      onClick={toggle}
-      className="fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center gold-glow"
-      style={{ background: "var(--gradient-gold)" }}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.92 }}
-      aria-label={playing ? "გააჩერე მუსიკა" : "ჩართე მუსიკა"}
-    >
-      <motion.svg
-        viewBox="0 0 32 32" className="w-7 h-7"
-        animate={playing ? { rotate: 360 } : { rotate: 0 }}
-        transition={{ duration: 5, repeat: playing ? Infinity : 0, ease: "linear" }}
+    <>
+      <iframe
+        ref={frameRef}
+        title="background music"
+        src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&autoplay=1&loop=1&playlist=${VIDEO_ID}&controls=0&playsinline=1&modestbranding=1`}
+        allow="autoplay; encrypted-media"
+        className="pointer-events-none fixed -z-10 h-px w-px opacity-0"
+        aria-hidden="true"
+      />
+
+      <motion.button
+        onClick={toggle}
+        className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center gold-glow"
+        style={{
+          background: "linear-gradient(160deg, oklch(1 0 0 / 0.75), oklch(0.90 0.028 80 / 0.85))",
+          border: "1px solid oklch(0.78 0.035 60 / 0.45)",
+        }}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.92 }}
+        aria-label={playing ? "გააჩერე მუსიკა" : "ჩართე მუსიკა"}
       >
-        <circle cx="16" cy="16" r="14" fill="oklch(0.18 0.05 162)" />
-        <circle cx="16" cy="16" r="9" fill="none" stroke="oklch(0.55 0.10 84)" strokeWidth="0.4"/>
-        <circle cx="16" cy="16" r="6" fill="none" stroke="oklch(0.55 0.10 84)" strokeWidth="0.4"/>
-        <circle cx="16" cy="16" r="3" fill="oklch(0.88 0.13 88)" />
-        <circle cx="16" cy="16" r="1" fill="oklch(0.20 0.06 162)" />
-      </motion.svg>
-    </motion.button>
+        <motion.svg
+          viewBox="0 0 32 32"
+          className="w-6 h-6"
+          animate={playing ? { rotate: 360 } : { rotate: 0 }}
+          transition={{ duration: 6, repeat: playing ? Infinity : 0, ease: "linear" }}
+        >
+          <circle cx="16" cy="16" r="14" fill="oklch(0.62 0.025 78)" opacity="0.85" />
+          <circle cx="16" cy="16" r="9" fill="none" stroke="oklch(0.97 0.012 85)" strokeWidth="0.5" />
+          <circle cx="16" cy="16" r="6" fill="none" stroke="oklch(0.97 0.012 85)" strokeWidth="0.5" />
+          <circle cx="16" cy="16" r="3" fill="oklch(0.90 0.028 80)" />
+          <circle cx="16" cy="16" r="1" fill="oklch(0.62 0.025 78)" />
+        </motion.svg>
+        {!playing && (
+          <span
+            className="absolute w-6 h-[1.5px] rotate-45"
+            style={{ background: "oklch(0.42 0.030 75)" }}
+          />
+        )}
+      </motion.button>
+    </>
   );
 }
