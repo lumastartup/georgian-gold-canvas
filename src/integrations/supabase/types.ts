@@ -17,6 +17,7 @@ export type Database = {
       rsvps: {
         Row: {
           attending: boolean
+          companion_name: string | null
           created_at: string
           guests: string | null
           id: string
@@ -25,6 +26,7 @@ export type Database = {
         }
         Insert: {
           attending: boolean
+          companion_name?: string | null
           created_at?: string
           guests?: string | null
           id?: string
@@ -33,6 +35,7 @@ export type Database = {
         }
         Update: {
           attending?: boolean
+          companion_name?: string | null
           created_at?: string
           guests?: string | null
           id?: string
