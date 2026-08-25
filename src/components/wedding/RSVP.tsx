@@ -7,7 +7,7 @@ export function RSVP() {
   const [attending, setAttending] = useState<"yes" | "no" | "">("");
   const [name, setName] = useState("");
   const [guests, setGuests] = useState("მხოლოდ მე");
-  const [menu, setMenu] = useState("სტანდარტული");
+  const [companion, setCompanion] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -23,7 +23,10 @@ export function RSVP() {
       name: name.trim(),
       attending: attending === "yes",
       guests: attending === "yes" ? guests : null,
-      menu: attending === "yes" ? menu : null,
+      companion_name:
+        attending === "yes" && guests === "+1 თანმხლები" && companion.trim()
+          ? companion.trim()
+          : null,
     });
     setBusy(false);
     if (dbError) {
@@ -111,21 +114,19 @@ export function RSVP() {
                 <option className="bg-card">ოჯახით</option>
               </select>
             </div>
-            <div>
-              <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">
-                მენიუ
-              </label>
-              <select
-                value={menu}
-                onChange={(e) => setMenu(e.target.value)}
-                className="w-full px-4 py-3 rounded-md gold-border focus:outline-none focus:gold-glow"
-              >
-                <option className="bg-card">სტანდარტული</option>
-                <option className="bg-card">სამარხვო</option>
-                <option className="bg-card">ვეგეტარიანული</option>
-                <option className="bg-card">განსაკუთრებული</option>
-              </select>
-            </div>
+            {guests === "+1 თანმხლები" && (
+              <div>
+                <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">
+                  თანმხლების სახელი და გვარი
+                </label>
+                <input
+                  required
+                  value={companion}
+                  onChange={(e) => setCompanion(e.target.value)}
+                  className="w-full px-4 py-3 rounded-md gold-border focus:outline-none focus:gold-glow bg-transparent"
+                />
+              </div>
+            )}
           </motion.div>
         )}
 
