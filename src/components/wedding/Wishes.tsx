@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
-import { supabase } from "@/integrations/supabase/client";
+import { submitPublicRecord } from "@/lib/public-submissions";
 import waxEnvelope from "@/assets/pink-envelope.jpg";
 
 export function Wishes() {
@@ -16,14 +16,18 @@ export function Wishes() {
     if (!message.trim()) return;
     setBusy(true);
     setError("");
-    const { error: dbError } = await supabase
-      .from("wishes")
-      .insert({ name: name.trim() || null, message: message.trim() });
-    setBusy(false);
-    if (dbError) {
+    try {
+      await submitPublicRecord("wishes", {
+        name: name.trim() || null,
+        message: message.trim(),
+      });
+    } catch (submissionError) {
+      console.error("[wishes] submission failed", submissionError);
+      setBusy(false);
       setError("ვერ გაიგზავნა, სცადეთ თავიდან");
       return;
     }
+    setBusy(false);
     setSubmitted(true);
   };
 
