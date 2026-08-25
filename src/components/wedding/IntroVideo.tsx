@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import intro from "@/assets/intro.mp4.asset.json";
+import intro from "@/assets/intro.mp4";
 
 export function IntroVideo({ onDone }: { onDone: () => void }) {
   const [leaving, setLeaving] = useState(false);
@@ -28,7 +28,7 @@ export function IntroVideo({ onDone }: { onDone: () => void }) {
         >
           <video
             ref={videoRef}
-            src={intro.url}
+            src={intro}
             autoPlay
             muted
             playsInline
