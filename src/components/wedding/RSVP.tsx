@@ -18,10 +18,11 @@ export function RSVP() {
     setBusy(true);
     setError("");
     
-    // ვგზავნით მხოლოდ იმ სვეტებს, რომლებიც რეალურად გაქვს ბაზაში: name და status
+    // ვგზავნით ზუსტად იმას, რაც ბაზის სვეტებს შეესაბამება
     const { error: dbError } = await supabase.from("rsvps").insert({
       name: name.trim(),
       status: attending,
+      attending: attending === "yes" || attending === "მოვდივარ",
     });
     
     setBusy(false);
