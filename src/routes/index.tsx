@@ -215,7 +215,7 @@ function Index() {
 
           <div className="mt-6 rounded-md overflow-hidden gold-border">
             <img
-              src={dresscode.url}
+              src={dresscode}
               alt="დრესკოდი — საღამოს სამოსი"
               className="w-full h-auto"
               draggable={false}
