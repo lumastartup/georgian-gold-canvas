@@ -5,10 +5,11 @@ import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
 import { RSVP } from "@/components/wedding/RSVP";
 import { Timeline } from "@/components/wedding/Timeline";
-import { TypewriterText } from "@/components/wedding/Typewriter";
 import { Wishes } from "@/components/wedding/Wishes";
 import { createFileRoute } from "@tanstack/react-router";
 import giuaani from "@/assets/giuaani-venue.webp";
+import dresscode from "@/assets/dresscode.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -158,26 +159,13 @@ function Index() {
       <Section>
         <div className="canvas-card rounded-lg p-8 sm:p-12 text-center">
           <GeorgianOrnament className="mx-auto w-36 mb-6" />
-          <p className="whisper text-[10px] uppercase tracking-[0.4em] mb-4 min-h-[1.25rem]">
-            <TypewriterText text="გეპატიჟებით" startDelay={300} speed={55} />
-          </p>
-          <p className="font-custom-wedding gold-text text-lg sm:text-xl leading-relaxed min-h-[3.5rem]">
-            <TypewriterText
-              text="სიყვარულით, ბედნიერებით და ახალი დასაწყისით სავსე დღე"
-              startDelay={900}
-              speed={42}
-            />
-          </p>
-          <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto min-h-[3rem]">
-            <TypewriterText
-              text="ჩვენი ცხოვრების უმნიშვნელოვანეს მომენტს თქვენთან ერთად აღვნიშნავთ."
-              startDelay={3600}
-              speed={40}
-            />
+          <p className="font-custom-wedding gold-text sparkle-text text-lg sm:text-2xl leading-relaxed max-w-xl mx-auto">
+            გეპატიჟებით ჩვენი ცხოვრების ერთ-ერთი ყველაზე მნიშვნელოვანი დღის გასაზიარებლად
           </p>
           <GeorgianOrnament className="mx-auto w-36 mt-7 rotate-180" />
         </div>
       </Section>
+
 
       {/* TIMELINE */}
       <Section>
@@ -224,10 +212,22 @@ function Index() {
         <div className="canvas-card rounded-lg p-8 sm:p-12 text-center">
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">dress code</p>
           <h3 className="font-custom-wedding gold-text sparkle-text text-3xl mt-2">დრესკოდი</h3>
-          <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
+
+          <div className="mt-6 rounded-md overflow-hidden gold-border">
+            <img
+              src={dresscode}
+              alt="დრესკოდი — საღამოს სამოსი"
+              className="w-full h-auto"
+              draggable={false}
+              loading="lazy"
+            />
+          </div>
+
+          <p className="mt-6 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
             განსაკუთრებული შეზღუდვა ფერებთან დაკავშირებით არ არის — შეგიძლიათ მოირგოთ თქვენთვის
             სასურველი და კომფორტული სამოსი, რომელიც ზოგად სადღესასწაულო ატმოსფეროს მოუხდება.
           </p>
+
           <div className="flex flex-wrap justify-center gap-5 mt-8">
             {DRESS_PALETTE.map((p) => (
               <div key={p.name} className="flex flex-col items-center gap-2">
