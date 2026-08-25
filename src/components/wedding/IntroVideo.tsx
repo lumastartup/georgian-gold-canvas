@@ -46,14 +46,14 @@ export function IntroVideo({ onDone }: { onDone: () => void }) {
               event.stopPropagation();
               finish();
             }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full text-[11px] tracking-[0.35em] uppercase"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 px-7 py-2 rounded-full font-custom-wedding text-xl tracking-[0.15em]"
             style={{
               color: "oklch(0.98 0 0 / 0.85)",
               border: "1px solid oklch(1 0 0 / 0.35)",
               backdropFilter: "blur(6px)",
             }}
           >
-            გახსნა
+            გახსენი
           </motion.button>
         </motion.div>
       ) : null}

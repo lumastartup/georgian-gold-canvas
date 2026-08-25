@@ -17,7 +17,6 @@ export function MusicToggle({ hidden = false }: { hidden?: boolean }) {
   useEffect(() => {
     const start = () => {
       post("unMute");
-      post("setVolume");
       post("playVideo");
     };
     const t = setTimeout(start, 600);
