@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { useMutation } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { useState } from "react";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
+import { getAdminData } from "@/lib/admin.functions";
 import * as XLSX from "xlsx";
 
 export const Route = createFileRoute("/admin")({
@@ -25,44 +27,58 @@ function Stat({ label, value }: { label: string; value: number }) {
 }
 
 function AdminPage() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["admin-data-direct"],
-    queryFn: async () => {
-      const [rsvpsRes, wishesRes] = await Promise.all([
-        supabase.from("rsvps").select("*").order("created_at", { ascending: false }),
-        supabase.from("wishes").select("*").order("created_at", { ascending: false }),
-      ]);
-
-      if (rsvpsRes.error) throw rsvpsRes.error;
-      if (wishesRes.error) throw wishesRes.error;
-
-      return {
-        rsvps: rsvpsRes.data || [],
-        wishes: wishesRes.data || [],
-      };
-    },
+  const [password, setPassword] = useState("");
+  const fetchAdminData = useServerFn(getAdminData);
+  const mutation = useMutation({
+    mutationFn: (pw: string) => fetchAdminData({ data: { password: pw } }),
   });
+  const data = mutation.data;
 
-  if (isLoading) {
+  if (!data) {
     return (
-      <div className="min-h-screen oil-canvas flex items-center justify-center">
-        <p className="whisper text-sm tracking-[0.3em] uppercase">იტვირთება…</p>
+      <div className="min-h-screen oil-canvas flex items-center justify-center p-6">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            mutation.mutate(password);
+          }}
+          className="canvas-card rounded-lg p-8 w-full max-w-sm space-y-5 text-center"
+        >
+          <GeorgianOrnament className="mx-auto w-32" />
+          <h1 className="font-custom-wedding gold-text text-3xl">ადმინ პანელი</h1>
+          <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="პაროლი"
+            className="w-full px-4 py-3 rounded-md gold-border bg-transparent focus:outline-none focus:gold-glow text-center"
+          />
+          {mutation.isError && (
+            <p className="whisper text-sm text-destructive">პაროლი არასწორია</p>
+          )}
+          <button
+            disabled={mutation.isPending}
+            className="w-full py-3 rounded-md font-custom-wedding text-lg tracking-widest gold-glow disabled:opacity-60"
+            style={{
+              background:
+                "linear-gradient(160deg, oklch(0.88 0.040 25 / 0.7), oklch(0.80 0.035 145 / 0.7))",
+              color: "oklch(0.42 0.030 75)",
+              border: "1px solid oklch(0.78 0.035 60 / 0.4)",
+            }}
+          >
+            {mutation.isPending ? "..." : "შესვლა"}
+          </button>
+        </form>
       </div>
     );
   }
 
-  if (error) {
-    return (
-      <div className="min-h-screen oil-canvas flex items-center justify-center p-6 text-center">
-        <p className="whisper text-sm">დაფიქსირდა შეცდომა მონაცემების ჩატვირთვისას.</p>
-      </div>
-    );
-  }
-
-  const rsvps = data?.rsvps || [];
-  const wishes = data?.wishes || [];
+  const rsvps = data.rsvps;
+  const wishes = data.wishes;
   const coming = rsvps.filter((r) => r.attending);
   const notComing = rsvps.filter((r) => !r.attending);
+
 
   const exportExcel = () => {
     const wb = XLSX.utils.book_new();
