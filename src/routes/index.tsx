@@ -91,17 +91,13 @@ function Index() {
     return () => timers.forEach(clearTimeout);
   }, [opened]);
 
-  if (!opened)
-    return (
-      <>
-        <MusicToggle hidden />
-        <IntroVideo onDone={() => setOpened(true)} />
-      </>
-    );
-
   return (
+    <>
+      <MusicToggle hidden={!opened} />
+      {!opened ? <IntroVideo onDone={() => setOpened(true)} /> : null}
+      {opened ? (
     <div className="relative">
-      <MusicToggle />
+
 
 
       {/* HERO */}
