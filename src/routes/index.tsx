@@ -265,5 +265,8 @@ function Index() {
         <p className="text-[10px] whisper mt-2 tracking-[0.4em]">20 · 09 · 2026 · გიუაანი</p>
       </footer>
     </div>
+      ) : null}
+    </>
   );
 }
+
