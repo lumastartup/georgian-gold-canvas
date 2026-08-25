@@ -4,10 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 
 export function RSVP() {
   const [submitted, setSubmitted] = useState(false);
-  const [attending, setAttending] = useState<"yes" | "no" | "">("");
+  const [attending, setAttending] = useState<"მოვდივარ" | "სამწუხაროდ ვერ ვახერხებ" | "">("");
   const [name, setName] = useState("");
-  const [guests, setGuests] = useState("მხოლოდ მე");
-  const [companion, setCompanion] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -19,15 +17,13 @@ export function RSVP() {
     }
     setBusy(true);
     setError("");
+    
+    // ვგზავნით მხოლოდ იმ სვეტებს, რომლებიც რეალურად გაქვს ბაზაში: name და status
     const { error: dbError } = await supabase.from("rsvps").insert({
       name: name.trim(),
-      attending: attending === "yes",
-      guests: attending === "yes" ? guests : null,
-      companion_name:
-        attending === "yes" && guests === "+1 თანმხლები" && companion.trim()
-          ? companion.trim()
-          : null,
+      status: attending,
     });
+    
     setBusy(false);
     if (dbError) {
       setError("ვერ გაიგზავნა, სცადეთ თავიდან");
@@ -77,13 +73,13 @@ export function RSVP() {
           </label>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { v: "yes", label: "მოვდივარ" },
-              { v: "no", label: "სამწუხაროდ ვერ ვახერხებ" },
+              { v: "მოვდივარ", label: "მოვდივარ" },
+              { v: "სამწუხაროდ ვერ ვახერხებ", label: "სამწუხაროდ ვერ ვახერხებ" },
             ].map((o) => (
               <button
                 type="button"
                 key={o.v}
-                onClick={() => setAttending(o.v as "yes" | "no")}
+                onClick={() => setAttending(o.v as any)}
                 className={`px-3 py-3 rounded-md transition-all font-custom-wedding text-base ${
                   attending === o.v ? "gold-fill gold-glow" : "gold-border whisper"
                 }`}
@@ -93,41 +89,6 @@ export function RSVP() {
             ))}
           </div>
         </div>
-
-        {attending === "yes" && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            className="space-y-6 overflow-hidden"
-          >
-            <div>
-              <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">
-                სტუმრები
-              </label>
-              <select
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                className="w-full px-4 py-3 rounded-md gold-border focus:outline-none focus:gold-glow"
-              >
-                <option className="bg-card">მხოლოდ მე</option>
-                <option className="bg-card">+1 თანმხლები</option>
-              </select>
-            </div>
-            {guests === "+1 თანმხლები" && (
-              <div>
-                <label className="block text-[10px] tracking-[0.3em] uppercase whisper mb-2">
-                  თანმხლების სახელი და გვარი
-                </label>
-                <input
-                  required
-                  value={companion}
-                  onChange={(e) => setCompanion(e.target.value)}
-                  className="w-full px-4 py-3 rounded-md gold-border focus:outline-none focus:gold-glow bg-transparent"
-                />
-              </div>
-            )}
-          </motion.div>
-        )}
 
         {error && <p className="text-sm text-center text-destructive">{error}</p>}
 
