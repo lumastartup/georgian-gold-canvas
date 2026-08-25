@@ -1,10 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-type AdminRow = Record<string, unknown>;
+import type { Database } from "@/integrations/supabase/types";
+
+type Rsvp = Database["public"]["Tables"]["rsvps"]["Row"];
+type Wish = Database["public"]["Tables"]["wishes"]["Row"];
 
 export type AdminResult =
-  | { ok: true; rsvps: AdminRow[]; wishes: AdminRow[] }
+  | { ok: true; rsvps: Rsvp[]; wishes: Wish[] }
   | { ok: false; code: "UNAUTHORIZED" | "NOT_CONFIGURED" | "SERVER_ERROR"; message: string };
 
 export const getAdminData = createServerFn({ method: "POST" })
@@ -37,8 +40,8 @@ export const getAdminData = createServerFn({ method: "POST" })
 
       return {
         ok: true,
-        rsvps: (rsvpsRes.data ?? []) as AdminRow[],
-        wishes: (wishesRes.data ?? []) as AdminRow[],
+        rsvps: rsvpsRes.data ?? [],
+        wishes: wishesRes.data ?? [],
       };
     } catch (error) {
       console.error("[admin] data fetch failed", error);
