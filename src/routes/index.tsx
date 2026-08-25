@@ -118,7 +118,7 @@ function Index() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                className="font-custom-wedding gold-text text-6xl sm:text-8xl leading-[1.0] my-2"
+                className="font-custom-wedding gold-text sparkle-text text-6xl sm:text-8xl leading-[1.0] my-2"
               >
                 ნინი
                 <span className="block whisper-soft text-3xl sm:text-5xl my-3 italic">&amp;</span>
@@ -188,7 +188,7 @@ function Index() {
       <Section>
         <div className="canvas-card rounded-lg p-6 sm:p-10 text-center">
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">venue</p>
-          <h3 className="font-custom-wedding gold-text text-3xl mt-2">გიუაანი მეღვინეობა</h3>
+          <h3 className="font-custom-wedding gold-text sparkle-text text-3xl mt-2">გიუაანი მეღვინეობა</h3>
           <p className="mt-2 whisper text-sm">ხელის მოწერა და ვახშამი · კახეთი</p>
 
           <div className="mt-6 rounded-md overflow-hidden gold-border aspect-[16/9] relative">
@@ -223,7 +223,7 @@ function Index() {
       <Section>
         <div className="canvas-card rounded-lg p-8 sm:p-12 text-center">
           <p className="whisper text-[10px] uppercase tracking-[0.4em]">dress code</p>
-          <h3 className="font-custom-wedding gold-text text-3xl mt-2">დრესკოდი</h3>
+          <h3 className="font-custom-wedding gold-text sparkle-text text-3xl mt-2">დრესკოდი</h3>
           <p className="mt-5 whisper text-sm sm:text-base leading-loose max-w-md mx-auto">
             განსაკუთრებული შეზღუდვა ფერებთან დაკავშირებით არ არის — შეგიძლიათ მოირგოთ თქვენთვის
             სასურველი და კომფორტული სამოსი, რომელიც ზოგად სადღესასწაულო ატმოსფეროს მოუხდება.
@@ -258,7 +258,7 @@ function Index() {
       {/* FOOTER */}
       <footer className="text-center py-16 px-4">
         <GeorgianOrnament className="mx-auto w-44 opacity-70" />
-        <p className="font-custom-wedding gold-text text-2xl mt-4">ნინი &amp; დათა</p>
+        <p className="font-custom-wedding gold-text sparkle-text text-2xl mt-4">ნინი &amp; დათა</p>
         <p className="text-[10px] whisper mt-2 tracking-[0.4em]">20 · 09 · 2026 · გიუაანი</p>
       </footer>
     </div>
