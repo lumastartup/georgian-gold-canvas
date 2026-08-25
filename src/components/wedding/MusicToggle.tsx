@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 const VIDEO_ID = "yKKYpjN3N3U";
 
-export function MusicToggle() {
+export function MusicToggle({ hidden = false }: { hidden?: boolean }) {
   const [playing, setPlaying] = useState(true);
   const frameRef = useRef<HTMLIFrameElement | null>(null);
 
@@ -15,12 +15,22 @@ export function MusicToggle() {
   };
 
   useEffect(() => {
-    // nudge playback shortly after mount (mount follows the user's tap on the intro)
-    const t = setTimeout(() => {
+    const start = () => {
       post("unMute");
+      post("setVolume");
       post("playVideo");
-    }, 800);
-    return () => clearTimeout(t);
+    };
+    const t = setTimeout(start, 600);
+    const onGesture = () => start();
+    window.addEventListener("pointerdown", onGesture);
+    window.addEventListener("touchstart", onGesture);
+    window.addEventListener("keydown", onGesture);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("pointerdown", onGesture);
+      window.removeEventListener("touchstart", onGesture);
+      window.removeEventListener("keydown", onGesture);
+    };
   }, []);
 
   const toggle = () => {
@@ -38,7 +48,7 @@ export function MusicToggle() {
       <iframe
         ref={frameRef}
         title="background music"
-        src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&autoplay=1&loop=1&playlist=${VIDEO_ID}&controls=0&playsinline=1&modestbranding=1`}
+        src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&playsinline=1&modestbranding=1`}
         allow="autoplay; encrypted-media"
         className="pointer-events-none fixed -z-10 h-px w-px opacity-0"
         aria-hidden="true"
@@ -46,7 +56,7 @@ export function MusicToggle() {
 
       <motion.button
         onClick={toggle}
-        className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center gold-glow"
+        className={`${hidden ? "hidden " : ""}fixed top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center gold-glow`}
         style={{
           background: "linear-gradient(160deg, oklch(1 0 0 / 0.75), oklch(0.90 0.028 80 / 0.85))",
           border: "1px solid oklch(0.78 0.035 60 / 0.45)",
