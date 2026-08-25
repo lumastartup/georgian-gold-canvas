@@ -91,11 +91,18 @@ function Index() {
     return () => timers.forEach(clearTimeout);
   }, [opened]);
 
-  if (!opened) return <IntroVideo onDone={() => setOpened(true)} />;
+  if (!opened)
+    return (
+      <>
+        <MusicToggle hidden />
+        <IntroVideo onDone={() => setOpened(true)} />
+      </>
+    );
 
   return (
     <div className="relative">
       <MusicToggle />
+
 
       {/* HERO */}
       <section className="relative min-h-[100svh] flex items-center justify-center px-4 overflow-hidden oil-canvas">
