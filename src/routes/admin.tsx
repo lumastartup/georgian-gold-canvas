@@ -167,13 +167,14 @@ function AdminPage() {
                   <th className="pb-3 pr-3">ესწრება</th>
                   <th className="pb-3 pr-3">სტუმრები</th>
                   <th className="pb-3 pr-3">თანმხლები</th>
-                  <th className="pb-3">დრო</th>
+                  <th className="pb-3 pr-3">დრო</th>
+                  <th className="pb-3"></th>
                 </tr>
               </thead>
               <tbody className="whisper">
                 {rsvps.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="py-4 text-center opacity-60">
+                    <td colSpan={6} className="py-4 text-center opacity-60">
                       ჯერ მონაცემები არ არის.
                     </td>
                   </tr>
