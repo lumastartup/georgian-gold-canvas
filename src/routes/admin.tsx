@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
-import { getAdminData } from "@/lib/admin.functions";
+import { getAdminData, deleteAdminRecord } from "@/lib/admin.functions";
 import * as XLSX from "xlsx";
 
 export const Route = createFileRoute("/admin")({
