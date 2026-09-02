@@ -29,9 +29,23 @@ function Stat({ label, value }: { label: string; value: number }) {
 function AdminPage() {
   const [password, setPassword] = useState("");
   const fetchAdminData = useServerFn(getAdminData);
+  const removeRecord = useServerFn(deleteAdminRecord);
   const mutation = useMutation({
     mutationFn: (pw: string) => fetchAdminData({ data: { password: pw } }),
   });
+  const deleteMutation = useMutation({
+    mutationFn: (vars: { table: "rsvps" | "wishes"; id: string }) =>
+      removeRecord({ data: { password, table: vars.table, id: vars.id } }),
+    onSuccess: (res) => {
+      if (res.ok) mutation.mutate(password);
+      else alert(res.message);
+    },
+  });
+  const handleDelete = (table: "rsvps" | "wishes", id: string) => {
+    if (window.confirm("დარწმუნებული ხართ, რომ გსურთ წაშლა?")) {
+      deleteMutation.mutate({ table, id });
+    }
+  };
   const result = mutation.data;
   const data = result && result.ok ? result : null;
   const errorMessage = mutation.isError
