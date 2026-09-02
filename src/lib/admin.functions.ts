@@ -55,3 +55,31 @@ export const getAdminData = createServerFn({ method: "POST" })
       };
     }
   });
+
+export type DeleteResult = { ok: true } | { ok: false; message: string };
+
+export const deleteAdminRecord = createServerFn({ method: "POST" })
+  .inputValidator((data) =>
+    z
+      .object({
+        password: z.string().min(1),
+        table: z.enum(["rsvps", "wishes"]),
+        id: z.string().uuid(),
+      })
+      .parse(data),
+  )
+  .handler(async ({ data }): Promise<DeleteResult> => {
+    const expected = (process.env["WEDDING_ADMIN_PASSWORD"] ?? "").trim();
+    if (!expected) return { ok: false, message: "სერვერი არ არის კონფიგურირებული." };
+    if (data.password.trim() !== expected) return { ok: false, message: "პაროლი არასწორია" };
+
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { error } = await supabaseAdmin.from(data.table).delete().eq("id", data.id);
+      if (error) throw error;
+      return { ok: true };
+    } catch (error) {
+      console.error("[admin] delete failed", error);
+      return { ok: false, message: "წაშლა ვერ მოხერხდა." };
+    }
+  });
