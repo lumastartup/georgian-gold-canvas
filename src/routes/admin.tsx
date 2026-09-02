@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { GeorgianOrnament } from "@/components/wedding/Ornament";
-import { getAdminData } from "@/lib/admin.functions";
+import { getAdminData, deleteAdminRecord } from "@/lib/admin.functions";
 import * as XLSX from "xlsx";
 
 export const Route = createFileRoute("/admin")({
@@ -29,9 +29,23 @@ function Stat({ label, value }: { label: string; value: number }) {
 function AdminPage() {
   const [password, setPassword] = useState("");
   const fetchAdminData = useServerFn(getAdminData);
+  const removeRecord = useServerFn(deleteAdminRecord);
   const mutation = useMutation({
     mutationFn: (pw: string) => fetchAdminData({ data: { password: pw } }),
   });
+  const deleteMutation = useMutation({
+    mutationFn: (vars: { table: "rsvps" | "wishes"; id: string }) =>
+      removeRecord({ data: { password, table: vars.table, id: vars.id } }),
+    onSuccess: (res) => {
+      if (res.ok) mutation.mutate(password);
+      else alert(res.message);
+    },
+  });
+  const handleDelete = (table: "rsvps" | "wishes", id: string) => {
+    if (window.confirm("დარწმუნებული ხართ, რომ გსურთ წაშლა?")) {
+      deleteMutation.mutate({ table, id });
+    }
+  };
   const result = mutation.data;
   const data = result && result.ok ? result : null;
   const errorMessage = mutation.isError
@@ -153,13 +167,14 @@ function AdminPage() {
                   <th className="pb-3 pr-3">ესწრება</th>
                   <th className="pb-3 pr-3">სტუმრები</th>
                   <th className="pb-3 pr-3">თანმხლები</th>
-                  <th className="pb-3">დრო</th>
+                  <th className="pb-3 pr-3">დრო</th>
+                  <th className="pb-3"></th>
                 </tr>
               </thead>
               <tbody className="whisper">
                 {rsvps.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="py-4 text-center opacity-60">
+                    <td colSpan={6} className="py-4 text-center opacity-60">
                       ჯერ მონაცემები არ არის.
                     </td>
                   </tr>
@@ -172,8 +187,17 @@ function AdminPage() {
                       <td className="py-3 pr-3">{rsvp.attending ? "კი" : "ვერ ახერხებს"}</td>
                       <td className="py-3 pr-3">{rsvp.guests || "—"}</td>
                       <td className="py-3 pr-3">{rsvp.companion_name || "—"}</td>
-                      <td className="py-3 text-[11px] opacity-70">
+                      <td className="py-3 pr-3 text-[11px] opacity-70">
                         {new Date(rsvp.created_at).toLocaleString("ka-GE")}
+                      </td>
+                      <td className="py-3 text-right">
+                        <button
+                          onClick={() => handleDelete("rsvps", rsvp.id)}
+                          disabled={deleteMutation.isPending}
+                          className="whisper text-[11px] px-3 py-1 rounded-md gold-border hover:opacity-70 transition disabled:opacity-40"
+                        >
+                          წაშლა
+                        </button>
                       </td>
                     </tr>
                   ))
@@ -194,9 +218,18 @@ function AdminPage() {
             ) : (
               wishes.map((wish) => (
                 <div key={wish.id} className="rounded-md gold-border p-4 space-y-1">
-                  <p className="font-custom-wedding gold-text text-lg">
-                    {wish.name || "ანონიმური"}
-                  </p>
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-custom-wedding gold-text text-lg">
+                      {wish.name || "ანონიმური"}
+                    </p>
+                    <button
+                      onClick={() => handleDelete("wishes", wish.id)}
+                      disabled={deleteMutation.isPending}
+                      className="whisper text-[11px] px-3 py-1 rounded-md gold-border hover:opacity-70 transition disabled:opacity-40 shrink-0"
+                    >
+                      წაშლა
+                    </button>
+                  </div>
                   <p className="whisper text-sm leading-loose">{wish.message}</p>
                   <p className="whisper text-[10px] opacity-60 pt-1">
                     {new Date(wish.created_at).toLocaleString("ka-GE")}
