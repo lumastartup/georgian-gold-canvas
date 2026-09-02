@@ -187,8 +187,17 @@ function AdminPage() {
                       <td className="py-3 pr-3">{rsvp.attending ? "კი" : "ვერ ახერხებს"}</td>
                       <td className="py-3 pr-3">{rsvp.guests || "—"}</td>
                       <td className="py-3 pr-3">{rsvp.companion_name || "—"}</td>
-                      <td className="py-3 text-[11px] opacity-70">
+                      <td className="py-3 pr-3 text-[11px] opacity-70">
                         {new Date(rsvp.created_at).toLocaleString("ka-GE")}
+                      </td>
+                      <td className="py-3 text-right">
+                        <button
+                          onClick={() => handleDelete("rsvps", rsvp.id)}
+                          disabled={deleteMutation.isPending}
+                          className="whisper text-[11px] px-3 py-1 rounded-md gold-border hover:opacity-70 transition disabled:opacity-40"
+                        >
+                          წაშლა
+                        </button>
                       </td>
                     </tr>
                   ))
