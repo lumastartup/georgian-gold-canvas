@@ -218,9 +218,18 @@ function AdminPage() {
             ) : (
               wishes.map((wish) => (
                 <div key={wish.id} className="rounded-md gold-border p-4 space-y-1">
-                  <p className="font-custom-wedding gold-text text-lg">
-                    {wish.name || "ანონიმური"}
-                  </p>
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-custom-wedding gold-text text-lg">
+                      {wish.name || "ანონიმური"}
+                    </p>
+                    <button
+                      onClick={() => handleDelete("wishes", wish.id)}
+                      disabled={deleteMutation.isPending}
+                      className="whisper text-[11px] px-3 py-1 rounded-md gold-border hover:opacity-70 transition disabled:opacity-40 shrink-0"
+                    >
+                      წაშლა
+                    </button>
+                  </div>
                   <p className="whisper text-sm leading-loose">{wish.message}</p>
                   <p className="whisper text-[10px] opacity-60 pt-1">
                     {new Date(wish.created_at).toLocaleString("ka-GE")}
